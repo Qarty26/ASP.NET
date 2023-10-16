@@ -56,7 +56,7 @@ namespace Lab2.Controllers
        public List<Student> DeleteId(int Id)
         {
             var studentId = students.Find(x => x.Id == Id);
-            students.Remove(studentId);
+            students.Remove(studentId!);
             return students;
         }
 
