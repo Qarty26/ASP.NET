@@ -1,9 +1,9 @@
-﻿using Lab3_DB.Data;
+﻿using Lab3_2.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lab3_DB.Controllers
+namespace Lab3_2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

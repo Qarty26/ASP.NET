@@ -1,7 +1,9 @@
-﻿using Lab3_DB.Models;
+﻿using Lab3_2.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
-namespace Lab3_DB.Data
+namespace Lab3_2.Data
 {
     public class Lab3Context : DbContext
     {
