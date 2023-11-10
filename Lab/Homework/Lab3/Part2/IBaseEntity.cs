@@ -1,4 +1,4 @@
-﻿namespace Lab3_DB.Models.Base
+﻿namespace Lab3_2.Models.Base
 {
     public class IBaseEntity
     {

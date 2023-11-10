@@ -1,4 +1,4 @@
-using Lab3_DB.Data;
+using Lab3_2.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
