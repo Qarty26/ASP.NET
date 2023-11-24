@@ -1,0 +1,11 @@
+
+<div  class = "counter-center" *ngIf="showButtons">Counter is {{counter}}</div>
+
+<div class = "button-container">
+<button *ngIf="!showButtons" mat-raised-button color = "primary" (click)="toShowButtons()">Start the counter</button>
+
+<button *ngIf="showButtons" mat-raised-button color="accent" (click)="addToCounter()" >Add</button>
+<button *ngIf="showButtons" mat-raised-button color="warn" (click)="subToCounter()" >Sub</button>
+
+</div>
+
