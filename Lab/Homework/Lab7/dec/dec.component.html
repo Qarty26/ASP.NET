@@ -1,5 +1,5 @@
 
-<div  class = "counter-center" *ngIf="showButtons">Counter is {{counter}}</div>
+<div  class = "counter-center" *ngIf="showButtons && !congrats">Counter is {{counter}}</div>
 
 <div class = "button-container">
 <button *ngIf="!showButtons" mat-raised-button color = "primary" (click)="toShowButtons()">Start the counter</button>
@@ -8,4 +8,6 @@
 <button *ngIf="showButtons" mat-raised-button color="warn" (click)="subToCounter()" >Sub</button>
 
 </div>
+
+<div class = 'counter-center' *ngIf="congrats">Esti dedicat</div>>
 

@@ -16,9 +16,17 @@ export class DecComponent {
 
   public counter: number = 0;
   public showButtons: boolean = false;
+  public congrats: boolean = false;
 
-  addToCounter() : void { this.counter++; }
-  subToCounter() : void { this.counter--; }
+  addToCounter() : void {
+    this.counter++;
+    if (this.counter == 26)
+      this.congrats = true;
+  }
+  subToCounter() : void {
+    if (this.counter > 0)
+      this.counter--;
+  }
   toShowButtons() : void {this.showButtons = true}
 
   constructor() {
