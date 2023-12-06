@@ -10,5 +10,6 @@ namespace Roads.Models
         public string? EndPoint { get; set; }
         public List<string>? Hashtags { get; set; }  
         public int Xp { get; set; }
+        public bool Confirmed { get; set; } = false;
     }
 }

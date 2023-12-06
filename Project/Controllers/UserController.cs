@@ -20,10 +20,23 @@ namespace Roads.Controllers
         }
 
         [HttpPost]
-        public List<User> Add(User user)
+        public List<User> AddUser(User user)
         {
             users.Add(user);
             return users;
+        }
+
+        [HttpPost("addTrack")]
+        public IActionResult AddTrack(Guid id,Track track)
+        {
+            User user = users.FirstOrDefault(u => u.Id == id);
+
+            if (user.Tracks == null)
+                user.Tracks = new List<Track>();
+
+            user.Tracks.Add(track);
+
+            return Ok($"Track added to user {id}'s tracks");
         }
 
         [HttpGet("sortByXp")]
