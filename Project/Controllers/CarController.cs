@@ -5,19 +5,20 @@ namespace Roads.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TrackController : Controller
+    public class CarController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public List<Track> tracks = new List<Track>();
+        public List<Car> cars = new List<Car>();
 
-        [HttpGet("GetAllTracks")]
-        public List<Track> GetAll()
+        [HttpGet("GetAllCars")]
+        public List<Car> GetAll()
         {
-            return tracks;
+            return cars;
         }
+
     }
 }

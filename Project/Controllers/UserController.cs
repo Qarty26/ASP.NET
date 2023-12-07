@@ -3,6 +3,8 @@ using Roads.Models;
 
 namespace Roads.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
         public IActionResult Index()
@@ -13,44 +15,23 @@ namespace Roads.Controllers
         public List<User> users = new List<User>();
 
 
-        [HttpGet]
-        public List<User> Get()
+        [HttpGet("GetAllUsers")]
+        public List<User> GetAll()
         {
             return users;
         }
 
-        [HttpPost]
+        [HttpPost("AddUser")]
         public List<User> AddUser(User user)
         {
             users.Add(user);
             return users;
         }
 
-        [HttpPost("addTrack")]
-        public IActionResult AddTrack(Guid id,Track track)
-        {
-            User user = users.FirstOrDefault(u => u.Id == id);
-
-            if (user.Tracks == null)
-                user.Tracks = new List<Track>();
-
-            user.Tracks.Add(track);
-
-            return Ok($"Track added to user {id}'s tracks");
-        }
-
         [HttpGet("sortByXp")]
         public List<User> OrderByXp()
         {
             users = users.OrderBy(x => x.Experience).ToList();
-            return users;
-        }
-
-
-        [HttpGet("sortByNoTracks")]
-        public List<User> OrderByNoTracks()
-        {
-            users = users.OrderBy(x => x.Tracks.Count).ToList();
             return users;
         }
     }
