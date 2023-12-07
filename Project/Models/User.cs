@@ -11,8 +11,6 @@ namespace Roads.Models
         public int Experience { get; set; } 
         public int Rank { get; set; }
         public string Status { get; set; } = "Regular";
-        public List<Car>? Cars { get; set; }
-        public List<Track>? Tracks { get; set; } 
 
     }
 }
