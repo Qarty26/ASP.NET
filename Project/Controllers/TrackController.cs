@@ -3,8 +3,8 @@ using Roads.Models;
 
 namespace Roads.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+  /*  [Route("api/[controller]")]
+    [ApiController]*/
     public class TrackController : Controller
     {
         public IActionResult Index()
