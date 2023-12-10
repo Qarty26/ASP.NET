@@ -9,5 +9,9 @@ namespace Roads.Models
         public int Year { get; set; }   
         public string? Color { get; set; }
 
+
+        public User User { get; set; }
+        public Guid IdUser { get; set; }
+
     }
 }

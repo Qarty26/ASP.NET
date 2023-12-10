@@ -12,5 +12,9 @@ namespace Roads.Models
         public int Rank { get; set; }
         public string Status { get; set; } = "Regular";
 
+
+        public ICollection<Car> Cars { get; set; } 
+        public ICollection<TrackRelation> TrackRelations { get; set;}
+
     }
 }
