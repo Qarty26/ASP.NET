@@ -1,4 +1,5 @@
 ﻿using Roads.Models.Base;
+using System.Text.Json.Serialization;
 
 namespace Roads.Models
 {
@@ -10,6 +11,7 @@ namespace Roads.Models
         public string? Color { get; set; }
 
 
+        [JsonIgnore]
         public User User { get; set; }
         public Guid IdUser { get; set; }
 

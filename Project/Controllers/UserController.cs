@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
+using Roads.Models.DTOs;
 
 namespace Roads.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+/*    [Route("api/[controller]")]
+    [ApiController]*/
     public class UserController : ControllerBase
     {
 
@@ -26,13 +27,34 @@ namespace Roads.Controllers
         }
 
         [HttpPost("AddCar")]
-        public IActionResult AddTrackToUser(Car car, Guid id)
+        public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
         {
             User user = users.FirstOrDefault(u => u.Id == id);
-            user.Cars.Add(car);
 
-            return Ok($"Car added to user {id}'s garage!");
+            if (user != null)
+            {
+                if (user.Cars == null)
+                {
+                    user.Cars = new List<Car>(); // Ensure the Cars collection is initialized
+                }
+
+                Car car = new Car
+                {
+                    Make = carDTO.Make,
+                    Model = carDTO.Model,
+                    Year = carDTO.Year,
+                    Color = carDTO.Color,
+                    User = user
+                };
+
+                user.Cars.Add(car);
+                return Ok($"Car added to user {id}'s garage!");
+            }
+
+            return NotFound($"User with ID {id} not found.");
         }
+
+
 
         [HttpGet("sortByXp")]
         public List<User> OrderByXp()
