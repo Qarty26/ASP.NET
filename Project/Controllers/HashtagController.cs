@@ -3,14 +3,9 @@ using Roads.Models;
 
 namespace Roads.Controllers
 {
-    public class HashtagController : Controller
+    public class HashtagController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public List<Hashtag> hashtags = new List<Hashtag>();
+        public static List<Hashtag> hashtags = new List<Hashtag>();
 
         public List<Hashtag> GetAll()
         {

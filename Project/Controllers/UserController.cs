@@ -3,16 +3,13 @@ using Roads.Models;
 
 namespace Roads.Controllers
 {
-    /*[Route("api/[controller]")]
-    [ApiController]*/
-    public class UserController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public List<User> users = new List<User>();
+        public static List<User> users = new List<User>
+        { };
 
 
         [HttpGet("GetAllUsers")]
@@ -26,6 +23,15 @@ namespace Roads.Controllers
         {
             users.Add(user);
             return users;
+        }
+
+        [HttpPost("AddCar")]
+        public IActionResult AddTrackToUser(Car car, Guid id)
+        {
+            User user = users.FirstOrDefault(u => u.Id == id);
+            user.Cars.Add(car);
+
+            return Ok($"Car added to user {id}'s garage!");
         }
 
         [HttpGet("sortByXp")]

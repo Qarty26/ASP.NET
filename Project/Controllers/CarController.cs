@@ -3,16 +3,12 @@ using Roads.Models;
 
 namespace Roads.Controllers
 {
-    /*[Route("api/[controller]")]
-    [ApiController]*/
-    public class CarController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CarController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public List<Car> cars = new List<Car>();
+        public static List<Car> cars = new List<Car>();
 
         [HttpGet("GetAllCars")]
         public List<Car> GetAll()

@@ -7,7 +7,7 @@ namespace Roads.Models.Base
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime? FirstCreated { get; set; } 
         public DateTime? LastModified { get; set; }
     }
