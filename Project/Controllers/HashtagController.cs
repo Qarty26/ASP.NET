@@ -7,11 +7,13 @@ namespace Roads.Controllers
     {
         public static List<Hashtag> hashtags = new List<Hashtag>();
 
+        [HttpGet("GetAllTags")]
         public List<Hashtag> GetAll()
         {
             return hashtags;
         }
 
+        [HttpPost("AddHashtag")]
         public List<Hashtag> AddHashtag(Hashtag hashtag)
         {
             hashtags.Add(hashtag);

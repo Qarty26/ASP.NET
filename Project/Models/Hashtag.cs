@@ -4,7 +4,7 @@ namespace Roads.Models
 {
     public class Hashtag : BaseEntity
     {
-        public string tag { get; set; }
+        public string? Tag { get; set; }
 
         public Track Track { get; set; }
         public Guid IdTrack { get; set; } 

@@ -35,7 +35,7 @@ namespace Roads.Controllers
             {
                 if (user.Cars == null)
                 {
-                    user.Cars = new List<Car>(); // Ensure the Cars collection is initialized
+                    user.Cars = new List<Car>();
                 }
 
                 Car car = new Car
