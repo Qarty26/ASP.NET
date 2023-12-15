@@ -54,8 +54,6 @@ namespace Roads.Controllers
             return NotFound($"User with ID {id} not found.");
         }
 
-
-
         [HttpGet("sortByXp")]
         public List<User> OrderByXp()
         {
