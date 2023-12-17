@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Services.UserService;
 
 namespace Roads.Controllers
 {
@@ -9,24 +10,21 @@ namespace Roads.Controllers
     public class UserController : ControllerBase
     {
 
-        public static List<User> users = new List<User>
-        { };
+        private readonly IUserService _userService;
 
-
-        [HttpGet("GetAllUsers")]
-        public List<User> GetAll()
+        public UserController(IUserService userService)
         {
-            return users;
+            _userService = userService;
         }
 
-        [HttpPost("AddUser")]
-        public List<User> AddUser(User user)
+        [HttpGet("GetByXp")]
+        public IActionResult SortByXp()
         {
-            users.Add(user);
-            return users;
+            return Ok(_userService.OrderByXp());
         }
 
-        [HttpPost("AddCar")]
+
+/*      [HttpPost("AddCar")]
         public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
         {
             User user = users.FirstOrDefault(u => u.Id == id);
@@ -52,13 +50,7 @@ namespace Roads.Controllers
             }
 
             return NotFound($"User with ID {id} not found.");
-        }
+        }*/
 
-        [HttpGet("sortByXp")]
-        public List<User> OrderByXp()
-        {
-            users = users.OrderBy(x => x.Experience).ToList();
-            return users;
-        }
     }
 }

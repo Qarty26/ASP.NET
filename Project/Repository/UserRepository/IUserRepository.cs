@@ -5,5 +5,6 @@ namespace Roads.Repository.UserRepository
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        List<User> OrderByXp();
     }
 }
