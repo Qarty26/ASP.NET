@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Services.TrackService;
 
 namespace Roads.Controllers
 {
@@ -8,45 +9,56 @@ namespace Roads.Controllers
     [ApiController]*/
     public class TrackController : ControllerBase
     {
+        private readonly ITrackService _trackService;
 
-        public static List<Track> tracks = new List<Track>();
-
-        [HttpGet("GetAllTracks")]
-        public List<Track> GetAll()
+        public TrackController(ITrackService trackService)
         {
-            return tracks;
+            _trackService = trackService;
         }
 
-        [HttpPost("AddTrack")]
-        public List<Track> AddTrack(Track track) 
+        [HttpGet("All Confirmed")]
+        public IActionResult AllConfirmed()
         {
-            tracks.Add(track);
-            return tracks;
+            return Ok(_trackService.GetAllConfirmed())
+;       }
+
+        [HttpGet("All pending")]
+        public IActionResult AllPending()
+        {
+            return Ok(_trackService.GetAllPending())
+;
         }
 
-        [HttpPost("AddTag")]
-        public IActionResult AddTagToTrack(HashtagDTO hashtagDTO, Guid id)
+        [HttpGet("OrderByXp")]
+        public IActionResult OrderByHighestXp()
         {
-            Track track = tracks.FirstOrDefault(t => t.Id == id);
+            return Ok(_trackService.OrderByHighestXp());
+        }
 
-            if (track != null)
-            {
-                if (track.Hashtags == null)
+
+        /*        [HttpPost("AddTag")]
+                public IActionResult AddTagToTrack(HashtagDTO hashtagDTO, Guid id)
                 {
-                    track.Hashtags = new List<Hashtag>();
-                }
+                    Track track = tracks.FirstOrDefault(t => t.Id == id);
 
-                Hashtag hashtag = new Hashtag
-                {
-                    Tag = hashtagDTO.Tag,
-                    Track = track
-                };
+                    if (track != null)
+                    {
+                        if (track.Hashtags == null)
+                        {
+                            track.Hashtags = new List<Hashtag>();
+                        }
 
-                track.Hashtags.Add(hashtag);
-                return Ok($"Hashtag added to track {id}'s list!");
-            }
+                        Hashtag hashtag = new Hashtag
+                        {
+                            Tag = hashtagDTO.Tag,
+                            Track = track
+                        };
 
-            return NotFound($"Track with ID {id} not found.");
-        }
+                        track.Hashtags.Add(hashtag);
+                        return Ok($"Hashtag added to track {id}'s list!");
+                    }
+
+                    return NotFound($"Track with ID {id} not found.");
+                }*/
     }
 }

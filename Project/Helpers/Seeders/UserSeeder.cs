@@ -22,12 +22,22 @@ namespace Roads.Helpers.Seeders
                     LastName = "FirstUser LastName",
                     Birthday = DateTime.Now,
                     NickName = Guid.NewGuid().ToString(),
-                    Experience = 0,
+                    Experience = 2,
                     Rank = 0,
                     Status = "Regular"
                 };
-
+                var user2 = new User
+                {
+                    FirstName = "SecondUser FirstName",
+                    LastName = "SecondUser LastName",
+                    Birthday = DateTime.Now,
+                    NickName = Guid.NewGuid().ToString(),
+                    Experience = 3,
+                    Rank = 0,
+                    Status = "Regular"
+                };
                 _roadsContext.Users.Add(user1);
+                _roadsContext.Users.Add(user2);
                 _roadsContext.SaveChanges();
             }
         }
