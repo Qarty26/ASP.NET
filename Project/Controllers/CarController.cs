@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
+using Roads.Services.CarService;
 
 namespace Roads.Controllers
 {
@@ -7,21 +8,18 @@ namespace Roads.Controllers
     [ApiController]*/
     public class CarController : ControllerBase
     {
-
-        public static List<Car> cars = new List<Car>();
-
-        [HttpGet("GetAllCars")]
-        public List<Car> GetAll()
+        public readonly CarService _carService;
+        public CarController(CarService carService)
         {
-            return cars;
+            _carService = carService;
         }
 
-        [HttpPost]
-        public List<Car> AddCar(Car car)
+        [HttpGet("Between Years")]
+        public IActionResult GetCarsBetweenYears(int startYear, int endYear)
         {
-            cars.Add(car);
-            return cars;
+            return Ok(_carService.YearsBetween(startYear, endYear));
         }
+
 
     }
 }

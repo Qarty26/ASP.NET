@@ -5,5 +5,6 @@ namespace Roads.Repository.CarRepository
 {
     public interface ICarRepository : IGenericRepository<Car>
     {
+        List<Car> YearsBetween(int startYear, int endYear);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Roads.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Roads.Data;
 using Roads.Models;
 using Roads.Repository.GenericRepository;
 
@@ -8,6 +9,11 @@ namespace Roads.Repository.CarRepository
     {
         public CarRepository(RoadsContext roadsContext) : base(roadsContext)
         {
+        }
+
+        public List<Car> YearsBetween(int startYear, int endYear)
+        {
+            return _table.AsNoTracking().Where(x => x.Year >= startYear && x.Year <= endYear).ToList();
         }
     }
 }
