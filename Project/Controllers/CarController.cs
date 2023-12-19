@@ -21,6 +21,5 @@ namespace Roads.Controllers
             return Ok(_carService.YearsBetween(startYear, endYear));
         }
 
-
     }
 }

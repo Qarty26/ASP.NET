@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Services.UserCarService;
 using Roads.Services.UserService;
 
 namespace Roads.Controllers
@@ -11,10 +12,12 @@ namespace Roads.Controllers
     {
 
         private readonly IUserService _userService;
+        private readonly IUserCarService _userCarService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IUserCarService userCarService)
         {
             _userService = userService;
+            _userCarService = userCarService;
         }
 
         [HttpGet("GetByXp")]
@@ -24,33 +27,10 @@ namespace Roads.Controllers
         }
 
 
-/*      [HttpPost("AddCar")]
+        [HttpGet("Add car to user")]
         public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
         {
-            User user = users.FirstOrDefault(u => u.Id == id);
-
-            if (user != null)
-            {
-                if (user.Cars == null)
-                {
-                    user.Cars = new List<Car>();
-                }
-
-                Car car = new Car
-                {
-                    Make = carDTO.Make,
-                    Model = carDTO.Model,
-                    Year = carDTO.Year,
-                    Color = carDTO.Color,
-                    User = user
-                };
-
-                user.Cars.Add(car);
-                return Ok($"Car added to user {id}'s garage!");
-            }
-
-            return NotFound($"User with ID {id} not found.");
-        }*/
-
+            return Ok(_userCarService.AddCarToUser(carDTO, id));
+        }
     }
 }
