@@ -25,5 +25,10 @@ namespace Roads.Repository.TrackRepository
         {
             return _table.OrderByDescending(x => x.Xp).ToList();
         }
+
+        public List<Track> OrderByNewest()
+        {
+            return _table.OrderByDescending(x => x.FirstCreated).ToList();
+        }
     }
 }

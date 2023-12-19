@@ -32,5 +32,11 @@ namespace Roads.Services.TrackService
             var highestXp = _trackRepository.OrderByHighestXp();
             return _mapper.Map<List<Track>>(highestXp);
         }
+
+        public List<Track> OrderByNewest()
+        {
+            var newestTracks = _trackRepository.OrderByNewest();
+            return _mapper.Map<List<Track>>(newestTracks);
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Roads.Services.TrackService
         List<Track> GetAllConfirmed();
         List<Track> GetAllPending();
         List<Track> OrderByHighestXp();
+        List<Track> OrderByNewest();
     }
 }

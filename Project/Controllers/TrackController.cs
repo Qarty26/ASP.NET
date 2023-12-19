@@ -5,8 +5,8 @@ using Roads.Services.TrackService;
 
 namespace Roads.Controllers
 {
-/*    [Route("api/[controller]")]
-    [ApiController]*/
+    /*    [Route("api/[controller]")]
+        [ApiController]*/
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;
@@ -20,7 +20,7 @@ namespace Roads.Controllers
         public IActionResult AllConfirmed()
         {
             return Ok(_trackService.GetAllConfirmed())
-;       }
+; }
 
         [HttpGet("All pending")]
         public IActionResult AllPending()
@@ -33,6 +33,12 @@ namespace Roads.Controllers
         public IActionResult OrderByHighestXp()
         {
             return Ok(_trackService.OrderByHighestXp());
+        }
+
+        [HttpGet("Order bt newest")]
+        public IActionResult OrderByNewest()
+        {
+            return Ok(_trackService.OrderByNewest());
         }
 
 
