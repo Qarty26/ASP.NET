@@ -15,7 +15,7 @@ namespace Roads.Models
         public bool Confirmed { get; set; } = false;
 
         [JsonIgnore]
-        public ICollection<Hashtag> Hashtags { get; set; }
-        public ICollection<TrackRelation> TrackRelations { get; set; }
+        public ICollection<TrackHashtagRelation>? TrackHashtagRelations { get; set; }
+        public ICollection<TrackRelation>? TrackRelations { get; set; }
     }
 }

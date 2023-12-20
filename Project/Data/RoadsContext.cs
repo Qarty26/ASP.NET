@@ -10,6 +10,7 @@ namespace Roads.Data
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<TrackRelation> TrackRelations { get; set; }
+        public DbSet<TrackHashtagRelation> TrackHashtagRelations { get; set; }
 
 
         public RoadsContext(DbContextOptions<RoadsContext> options) : base(options) { }
@@ -20,9 +21,6 @@ namespace Roads.Data
                 .HasMany(u => u.Cars)
                 .WithOne(c => c.User);
 
-            modelBuilder.Entity<Track>()
-                .HasMany(h => h.Hashtags)
-                .WithOne(t => t.Track);
 
             //many to many
 
@@ -36,8 +34,24 @@ namespace Roads.Data
 
             modelBuilder.Entity<TrackRelation>()
                 .HasOne(tr => tr.User)
-                .WithMany(t => t.TrackRelations)
+                .WithMany(u => u.TrackRelations)
                 .HasForeignKey(tr => tr.IdUser);
+
+
+            //----------------------------
+
+            modelBuilder.Entity<TrackHashtagRelation>().HasKey(thr => new { thr.IdHashtag, thr.IdTrack });
+
+            modelBuilder.Entity<TrackHashtagRelation>()
+                .HasOne(thr => thr.Track)
+                .WithMany(t => t.TrackHashtagRelations)
+                .HasForeignKey(thr => thr.IdTrack);
+
+
+            modelBuilder.Entity<TrackHashtagRelation>()
+                .HasOne(thr => thr.Hashtag)
+                .WithMany(h => h.TrackHashtagRelations)
+                .HasForeignKey(thr => thr.IdHashtag);
 
             base.OnModelCreating(modelBuilder);
         }
