@@ -1,4 +1,5 @@
-﻿using Roads.Models.Base;
+﻿using Roads.Data.Enums;
+using Roads.Models.Base;
 using Roads.Models.DTOs;
 
 namespace Roads.Models
@@ -11,7 +12,7 @@ namespace Roads.Models
         public string NickName { get; set; } = Guid.NewGuid().ToString();
         public int Experience { get; set; } = 0;
         public int Rank { get; set; } = 0;
-        public string Status { get; set; } = "Regular";
+        public Role Status { get; set; } = Role.Regular;
 
 
         public ICollection<Car>? Cars { get; set; } 

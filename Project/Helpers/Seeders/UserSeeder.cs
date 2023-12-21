@@ -1,4 +1,5 @@
 ﻿using Roads.Data;
+using Roads.Data.Enums;
 using Roads.Models;
 
 namespace Roads.Helpers.Seeders
@@ -24,7 +25,7 @@ namespace Roads.Helpers.Seeders
                     NickName = Guid.NewGuid().ToString(),
                     Experience = 2,
                     Rank = 0,
-                    Status = "Regular"
+                    Status = Role.Regular
                 };
                 var user2 = new User
                 {
@@ -34,7 +35,7 @@ namespace Roads.Helpers.Seeders
                     NickName = Guid.NewGuid().ToString(),
                     Experience = 3,
                     Rank = 0,
-                    Status = "Regular"
+                    Status = Role.Regular
                 };
                 _roadsContext.Users.Add(user1);
                 _roadsContext.Users.Add(user2);
