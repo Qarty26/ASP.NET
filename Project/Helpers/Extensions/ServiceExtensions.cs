@@ -1,9 +1,12 @@
 ﻿using Roads.Helpers.Seeders;
 using Roads.Repository.CarRepository;
+using Roads.Repository.HashtagRepository;
 using Roads.Repository.TrackRepository;
 using Roads.Repository.UserRepository;
 using Roads.Services.CarService;
+using Roads.Services.HashtagService;
 using Roads.Services.TrackService;
+using Roads.Services.UserCarService;
 using Roads.Services.UserService;
 
 namespace Roads.Helpers.Extensions
@@ -15,6 +18,7 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<IHashtagRepository, HashtagRepository>();
 
             return services;
         }
@@ -23,6 +27,9 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITrackService, TrackService>();
             services.AddTransient<ICarService, CarService>();
+            services.AddTransient<IHashtagService, HashtagService>();
+            services.AddTransient<IUserCarService, UserCarService>();
+
             return services;
         }
         public static IServiceCollection AddSeeder(this IServiceCollection services)
@@ -30,6 +37,8 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<UserSeeder>();
             services.AddTransient<TrackSeeder>();
             services.AddTransient<CarSeeder>();
+            services.AddTransient<HashtagSeeder>();
+
             return services;
         }
     }

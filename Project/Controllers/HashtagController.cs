@@ -1,23 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
+using Roads.Services.HashtagService;
 
 namespace Roads.Controllers
 {
     public class HashtagController : ControllerBase
     {
-        public static List<Hashtag> hashtags = new List<Hashtag>();
+        private readonly HashtagService _hashtagService;
+
+        public HashtagController(HashtagService hashtagService)
+        {
+            _hashtagService = hashtagService;
+        }
 
         [HttpGet("GetAllTags")]
-        public List<Hashtag> GetAll()
+        public IActionResult GetAllTags()
         {
-            return hashtags;
+            return Ok(_hashtagService.GettAllHashtags());
         }
 
-        [HttpPost("AddHashtag")]
-        public List<Hashtag> AddHashtag(Hashtag hashtag)
+//todo
+/*        [HttpPost("AddHashtag")]
+        public IActionResult AddTag(Hashtag tag)
         {
-            hashtags.Add(hashtag);
-            return hashtags;
-        }
+            return Ok(_hashtagService.AddTag(tag));
+        }*/
     }
 }

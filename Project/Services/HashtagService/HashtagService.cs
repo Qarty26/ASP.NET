@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Repository.HashtagRepository;
 
 namespace Roads.Services.HashtagService
@@ -13,6 +15,17 @@ namespace Roads.Services.HashtagService
             _hashtagRepository = hashtagRepository;
             _mapper = mapper;
         }
+
+        public List<HashtagDTO> GettAllHashtags()
+        {
+            var allHashtags = _hashtagRepository.GetAll();
+            return _mapper.Map<List<HashtagDTO>>(allHashtags);
+        }
+//todo
+/*        public bool AddTag(Hashtag tag)
+        {
+           var  _hashtagRepository.Create();
+        }*/
 
 
     }
