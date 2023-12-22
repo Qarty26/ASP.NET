@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Repository.TrackRepository;
 
 namespace Roads.Services.TrackService
@@ -15,28 +16,28 @@ namespace Roads.Services.TrackService
             _mapper = mapper;
         }
 
-        public List<Track> GetAllConfirmed()
+        public List<TrackDTO> GetAllConfirmed()
         {
             var allConfirmed = _trackRepository.GetAllConfirmed();
-            return _mapper.Map<List<Track>>(allConfirmed);
+            return _mapper.Map<List<TrackDTO>>(allConfirmed);
         }
 
-        public List<Track> GetAllPending()
+        public List<TrackDTO> GetAllPending()
         {
             var allPending = _trackRepository.GetAllPending();
-            return _mapper.Map<List<Track>>(allPending);
+            return _mapper.Map<List<TrackDTO>>(allPending);
         }
 
-        public List<Track> OrderByHighestXp()
+        public List<TrackDTO> OrderByHighestXp()
         {
             var highestXp = _trackRepository.OrderByHighestXp();
-            return _mapper.Map<List<Track>>(highestXp);
+            return _mapper.Map<List<TrackDTO>>(highestXp);
         }
 
-        public List<Track> OrderByNewest()
+        public List<TrackDTO> OrderByNewest()
         {
             var newestTracks = _trackRepository.OrderByNewest();
-            return _mapper.Map<List<Track>>(newestTracks);
+            return _mapper.Map<List<TrackDTO>>(newestTracks);
         }
     }
 }

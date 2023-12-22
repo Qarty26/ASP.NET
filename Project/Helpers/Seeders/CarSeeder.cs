@@ -16,14 +16,15 @@ namespace Roads.Helpers.Seeders
 
         public void SeedInitialUsers()
         {
-            if(!_roadsContext.Tracks.Any())
+            if(!_roadsContext.Cars.Any())
             {
                 var car1 = new Car
                 {
                     Make = "Unknown Brand",
                     Model = "Unknown Model",
                     Year = 0,
-                    Color = "Unknown color"
+                    Color = "Unknown color",
+
                 };
 
                 _roadsContext.Cars.Add(car1);

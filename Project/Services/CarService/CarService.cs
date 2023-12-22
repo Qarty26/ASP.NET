@@ -16,10 +16,10 @@ namespace Roads.Services.CarService
             _mapper = mapper;
         }
 
-        public List<Car> YearsBetween(int startYear, int endYear)
+        public List<CarDTO> YearsBetween(int startYear, int endYear)
         {
             var years = _carRepository.YearsBetween(startYear, endYear);
-            return _mapper.Map<List<Car>>(years);
+            return _mapper.Map<List<CarDTO>>(years);
         }
     }
 }

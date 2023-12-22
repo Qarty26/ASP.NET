@@ -1,4 +1,6 @@
-﻿namespace Roads.Models.DTOs
+﻿using Roads.Data.Enums;
+
+namespace Roads.Models.DTOs
 {
     public class UserDTO
     {
@@ -8,7 +10,7 @@
         public string NickName { get; set; } = Guid.NewGuid().ToString();
         public int Experience { get; set; } = 0;
         public int Rank { get; set; } = 0;
-        public string Status { get; set; } = "Regular";
+        public Role Status { get; set; } = Role.Regular;
 
     }
 }

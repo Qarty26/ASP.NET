@@ -7,15 +7,16 @@ namespace Roads.Controllers
 {
 /*    [Route("api/[controller]")]
     [ApiController]*/
+    
     public class CarController : ControllerBase
     {
-        public readonly CarService _carService;
-        public CarController(CarService carService)
+        public readonly ICarService _carService; 
+        public CarController(ICarService carService)
         {
             _carService = carService;
         }
 
-        [HttpGet("Between Years")]
+        [HttpGet("BetweenYears")]
         public IActionResult GetCarsBetweenYears(int startYear, int endYear)
         {
             return Ok(_carService.YearsBetween(startYear, endYear));

@@ -1,12 +1,13 @@
 ﻿using Roads.Models;
+using Roads.Models.DTOs;
 
 namespace Roads.Services.TrackService
 {
     public interface ITrackService
     {
-        List<Track> GetAllConfirmed();
-        List<Track> GetAllPending();
-        List<Track> OrderByHighestXp();
-        List<Track> OrderByNewest();
+        List<TrackDTO> GetAllConfirmed();
+        List<TrackDTO> GetAllPending();
+        List<TrackDTO> OrderByHighestXp();
+        List<TrackDTO> OrderByNewest();
     }
 }
