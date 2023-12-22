@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Roads.Data;
 using Roads.Helpers.Extensions;
+using Roads.Helpers.Seeders;
 using Roads.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddSeeder();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
+SeedData(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,3 +38,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var userService = scope.ServiceProvider.GetService<UserSeeder>();
+        userService.SeedInitialUsers();
+
+        var carService = scope.ServiceProvider.GetService<CarSeeder>();
+        carService.SeedInitialUsers();
+
+        var trackService = scope.ServiceProvider.GetService<TrackSeeder>();
+        trackService.SeedInitialUsers();
+    }
+}
