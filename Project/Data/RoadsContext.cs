@@ -9,8 +9,9 @@ namespace Roads.Data
         public DbSet<Hashtag> Hashtags { get; set; }
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<TrackRelation> TrackRelations { get; set; }
+        public DbSet<UserTrackRelation> TrackRelations { get; set; }
         public DbSet<TrackHashtagRelation> TrackHashtagRelations { get; set; }
+        public DbSet<TrackCarRelation> TrackCarRelations { get; set; }
 
 
         public RoadsContext(DbContextOptions<RoadsContext> options) : base(options) { }
@@ -24,17 +25,17 @@ namespace Roads.Data
 
             //many to many
 
-            modelBuilder.Entity<TrackRelation>().HasKey(tr => new { tr.IdUser, tr.IdTrack });
+            modelBuilder.Entity<UserTrackRelation>().HasKey(tr => new { tr.IdUser, tr.IdTrack });
 
-            modelBuilder.Entity<TrackRelation>()
+            modelBuilder.Entity<UserTrackRelation>()
                 .HasOne(tr => tr.Track)
-                .WithMany(t => t.TrackRelations)
+                .WithMany(t => t.UserTrackRelations)
                 .HasForeignKey(tr => tr.IdTrack);
 
 
-            modelBuilder.Entity<TrackRelation>()
+            modelBuilder.Entity<UserTrackRelation>()
                 .HasOne(tr => tr.User)
-                .WithMany(u => u.TrackRelations)
+                .WithMany(u => u.UserTrackRelations)
                 .HasForeignKey(tr => tr.IdUser);
 
 
@@ -52,6 +53,20 @@ namespace Roads.Data
                 .HasOne(thr => thr.Hashtag)
                 .WithMany(h => h.TrackHashtagRelations)
                 .HasForeignKey(thr => thr.IdHashtag);
+
+            //-------------------------------
+
+            modelBuilder.Entity<TrackCarRelation>().HasKey(tcr => new { tcr.IdCar, tcr.IdTrack });
+
+            modelBuilder.Entity<TrackCarRelation>()
+                .HasOne (tcr => tcr.Car)
+                .WithMany(c => c.TrackCarRelations)
+                .HasForeignKey (tcr => tcr.IdCar);
+
+            modelBuilder.Entity<TrackCarRelation>()
+                .HasOne(tcr => tcr.Track)
+                .WithMany(t => t.TrackCarRelations)
+                .HasForeignKey(tcr => tcr.IdTrack);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -16,6 +16,7 @@ namespace Roads.Models
 
         [JsonIgnore]
         public ICollection<TrackHashtagRelation>? TrackHashtagRelations { get; set; }
-        public ICollection<TrackRelation>? TrackRelations { get; set; }
+        public ICollection<UserTrackRelation>? UserTrackRelations { get; set; }
+        public ICollection<TrackCarRelation>? TrackCarRelations { get; set; }
     }
 }
