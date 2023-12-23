@@ -8,7 +8,6 @@ namespace Roads.Models
         public string? Tag { get; set; }
         public int Xp { get; set; } = 0;
 
-        [JsonIgnore]
         public ICollection<TrackHashtagRelation>? TrackHashtagRelations { get; set; }
     }
 }

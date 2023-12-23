@@ -14,7 +14,7 @@ namespace Roads.Helpers.Seeders
             _roadsContext = roadsContext;
         }
 
-        public void SeedInitialUsers()
+        public void SeedInitialCars()
         {
             if(!_roadsContext.Cars.Any())
             {

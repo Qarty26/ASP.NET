@@ -6,9 +6,9 @@ namespace Roads.Controllers
 {
     public class HashtagController : ControllerBase
     {
-        private readonly HashtagService _hashtagService;
+        private readonly IHashtagService _hashtagService;
 
-        public HashtagController(HashtagService hashtagService)
+        public HashtagController(IHashtagService hashtagService)
         {
             _hashtagService = hashtagService;
         }

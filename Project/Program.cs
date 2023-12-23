@@ -47,9 +47,12 @@ void SeedData(IHost app)
         userService.SeedInitialUsers();
 
         var carService = scope.ServiceProvider.GetService<CarSeeder>();
-        carService.SeedInitialUsers();
+        carService.SeedInitialCars();
 
         var trackService = scope.ServiceProvider.GetService<TrackSeeder>();
-        trackService.SeedInitialUsers();
+        trackService.SeedInitialTracks();
+
+        var hashtagService = scope.ServiceProvider.GetService<HashtagSeeder>();
+        hashtagService.SeedInitialHashtags();
     }
 }

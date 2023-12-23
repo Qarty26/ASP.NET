@@ -12,7 +12,7 @@ namespace Roads.Helpers.Seeders
             _roadsContext = roadsContext;
         }
 
-        public void SeedInitialUsers()
+        public void SeedInitialTracks()
         {
             if(!_roadsContext.Tracks.Any()) 
             {
