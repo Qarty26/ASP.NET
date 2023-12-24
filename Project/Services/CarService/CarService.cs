@@ -21,5 +21,10 @@ namespace Roads.Services.CarService
             var years = _carRepository.YearsBetween(startYear, endYear);
             return _mapper.Map<List<CarDTO>>(years);
         }
+
+        public bool DeleteCarById(Guid id)
+        {
+            return _carRepository.DeleteById(id);
+        }
     }
 }

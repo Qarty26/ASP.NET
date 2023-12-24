@@ -9,5 +9,6 @@ namespace Roads.Services.TrackService
         List<TrackDTO> GetAllPending();
         List<TrackDTO> OrderByHighestXp();
         List<TrackDTO> OrderByNewest();
+        bool DeleteTrackById(Guid id);
     }
 }

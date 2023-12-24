@@ -26,6 +26,5 @@ namespace Roads.Services.UserService
         {
             return _userRepository.DeleteById(id);
         }
-
     }
 }

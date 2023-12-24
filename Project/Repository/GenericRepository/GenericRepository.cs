@@ -30,6 +30,7 @@ namespace Roads.Repository.GenericRepository
         public void Create(TEntity entity)
         {
             _table.Add(entity);
+            //_roadsContext.SaveChanges();
         }
         public async Task CreateAsync(TEntity entity)
         {
@@ -69,6 +70,7 @@ namespace Roads.Repository.GenericRepository
             var entity = _table.Find(id);
             if (entity == null) return false;
             _table.Remove(entity);
+            _roadsContext.SaveChanges();
             return true;
         }
 
@@ -93,7 +95,7 @@ namespace Roads.Repository.GenericRepository
         //save
         public bool Save()
         {
-            return _roadsContext.SaveChanges() > 0;
+            return _roadsContext.SaveChanges() >= 0;
         }
         public async Task<bool> SaveAsync()
         {

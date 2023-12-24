@@ -39,5 +39,10 @@ namespace Roads.Services.TrackService
             var newestTracks = _trackRepository.OrderByNewest();
             return _mapper.Map<List<TrackDTO>>(newestTracks);
         }
+
+        public bool DeleteHashtagById(Guid id)
+        {
+            return _trackRepository.DeleteById(id);
+        }
     }
 }

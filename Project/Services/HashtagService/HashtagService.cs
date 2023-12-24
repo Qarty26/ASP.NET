@@ -21,11 +21,11 @@ namespace Roads.Services.HashtagService
             var allHashtags = _hashtagRepository.GetAll();
             return _mapper.Map<List<HashtagDTO>>(allHashtags);
         }
-//todo
-/*        public bool AddTag(Hashtag tag)
+
+        public bool DeleteHashtagById(Guid id)
         {
-           var  _hashtagRepository.Create();
-        }*/
+            return _hashtagRepository.DeleteById(id);
+        }
 
 
     }

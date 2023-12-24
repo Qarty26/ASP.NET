@@ -6,6 +6,6 @@ namespace Roads.Services.HashtagService
     public interface IHashtagService
     {
         List<HashtagDTO> GettAllHashtags();
-/*        bool AddTag(Hashtag tag);*/
+        bool DeleteHashtagById(Guid id);
     }
 }

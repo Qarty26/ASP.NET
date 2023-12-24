@@ -21,11 +21,18 @@ namespace Roads.Controllers
             return Ok(_hashtagService.GettAllHashtags());
         }
 
-//todo
-/*        [HttpPost("AddHashtag")]
-        public IActionResult AddTag(Hashtag tag)
+        [HttpDelete("DeleteById")]
+        public IActionResult DeleteById(Guid id)
         {
-            return Ok(_hashtagService.AddTag(tag));
-        }*/
+            var deleted = _hashtagService.DeleteHashtagById(id);
+            return Ok(deleted);
+        }
+
+        //todo
+        /*        [HttpPost("AddHashtag")]
+                public IActionResult AddTag(Hashtag tag)
+                {
+                    return Ok(_hashtagService.AddTag(tag));
+                }*/
     }
 }

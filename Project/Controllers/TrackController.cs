@@ -41,6 +41,13 @@ namespace Roads.Controllers
             return Ok(_trackService.OrderByNewest());
         }
 
+        [HttpDelete("DeleteById")]
+        public IActionResult DeleteById(Guid id)
+        {
+            var deleted = _trackService.DeleteTrackById(id);
+            return Ok(deleted);
+        }
+
 
         /*        [HttpPost("AddTag")]
                 public IActionResult AddTagToTrack(HashtagDTO hashtagDTO, Guid id)
