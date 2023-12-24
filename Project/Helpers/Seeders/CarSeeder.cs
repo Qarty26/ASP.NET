@@ -20,14 +20,23 @@ namespace Roads.Helpers.Seeders
             {
                 var car1 = new Car
                 {
-                    Make = "Unknown Brand",
-                    Model = "Unknown Model",
-                    Year = 0,
-                    Color = "Unknown color",
-
+                    Make = "BMW",
+                    Model = "220d",
+                    Year = 2015,
+                    Color = "White",
+                };
+                var car2 = new Car
+                {
+                    Make = "Porsche",
+                    Model = "Cayman GTS",
+                    Year = 2020,
+                    Color = "Green",
                 };
 
+
                 _roadsContext.Cars.Add(car1);
+                _roadsContext.Cars.Add(car2);
+
                 _roadsContext.SaveChanges();
             }
         }

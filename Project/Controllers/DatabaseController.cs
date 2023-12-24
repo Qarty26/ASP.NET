@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace Roads.Controllers
 {
- /*   [Route("api/[controller]")]
-    [ApiController]*/
+    [Route("api/[controller]")]
+    [ApiController]
     public class DatabaseController : ControllerBase
     {
         private readonly RoadsContext _roadsContext;

@@ -17,12 +17,25 @@ namespace Roads.Helpers.Seeders
             if(!_roadsContext.Hashtags.Any())
             {
                 var Tag = new Hashtag
-                { 
-                    Xp = 0,
-                    Tag = "Unknown tag"
+                {
+                    Xp = 20,
+                    Tag = "Level difference"
+                };
+                var Tag2 = new Hashtag
+                {
+                    Xp = 10,
+                    Tag = "Curvy"
+                };
+                var Tag3 = new Hashtag
+                {
+                    Xp = 40,
+                    Tag = "Speedy"
                 };
 
                 _roadsContext.Hashtags.Add(Tag);
+                _roadsContext.Hashtags.Add(Tag2);
+                _roadsContext.Hashtags.Add(Tag3);
+
                 _roadsContext.SaveChanges();
 
             }

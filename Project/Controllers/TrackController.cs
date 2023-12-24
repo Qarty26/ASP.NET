@@ -5,8 +5,8 @@ using Roads.Services.TrackService;
 
 namespace Roads.Controllers
 {
-    /*    [Route("api/[controller]")]
-        [ApiController]*/
+        [Route("api/[controller]")]
+        [ApiController]
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;

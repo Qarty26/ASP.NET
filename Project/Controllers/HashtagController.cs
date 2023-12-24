@@ -4,6 +4,8 @@ using Roads.Services.HashtagService;
 
 namespace Roads.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class HashtagController : ControllerBase
     {
         private readonly IHashtagService _hashtagService;

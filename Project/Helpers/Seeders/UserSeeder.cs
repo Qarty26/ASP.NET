@@ -19,23 +19,27 @@ namespace Roads.Helpers.Seeders
             {
                 var user1 = new User
                 {
-                    FirstName = "FirstUser FirstName",
-                    LastName = "FirstUser LastName",
+                    FirstName = "Mircea",
+                    LastName = "Razvan",
                     Birthday = DateTime.Now,
                     NickName = Guid.NewGuid().ToString(),
-                    Experience = 2,
-                    Rank = 0,
-                    Status = Role.Regular
+                    Experience = 100,
+                    Rank = 1,
+                    Status = Role.Admin,
+                    Email = "rzvandmir03@gmail.com",
+                    Password = "razpassword",
                 };
                 var user2 = new User
                 {
-                    FirstName = "SecondUser FirstName",
-                    LastName = "SecondUser LastName",
+                    FirstName = "Mincu",
+                    LastName = "Adrian",
                     Birthday = DateTime.Now,
                     NickName = Guid.NewGuid().ToString(),
-                    Experience = 3,
-                    Rank = 0,
-                    Status = Role.Regular
+                    Experience = 200,
+                    Rank = 2,
+                    Status = Role.Vip,
+                    Email = "adimincu@gmail.com",
+                    Password = "adipassword"
                 };
                 _roadsContext.Users.Add(user1);
                 _roadsContext.Users.Add(user2);

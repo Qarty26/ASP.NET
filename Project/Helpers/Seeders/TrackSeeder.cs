@@ -18,11 +18,11 @@ namespace Roads.Helpers.Seeders
             {
                 var track1 = new Track
                 {
-                    Name = "Unknown name",
-                    StartPoint = "Unknown SP",
-                    EndPoint = "Unknown EP",
-                    Xp = 0,
-                    Confirmed = false
+                    Name = "Poiana",
+                    StartPoint = "Brasov",
+                    EndPoint = "Poiana Brasov",
+                    Xp = 100,
+                    Confirmed = true
                 };
 
                 _roadsContext.Tracks.Add(track1);

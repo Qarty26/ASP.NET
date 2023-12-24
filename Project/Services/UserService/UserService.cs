@@ -20,7 +20,11 @@ namespace Roads.Services.UserService
         {
             var leaderboardByXp = _userRepository.OrderByXp();
             return _mapper.Map<List<User>>(leaderboardByXp);
+        }
 
+        public bool DeleteUserById(Guid id)
+        {
+            return _userRepository.DeleteById(id);
         }
 
     }

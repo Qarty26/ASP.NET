@@ -21,6 +21,7 @@ namespace Roads.Repository.GenericRepository
         //delete
 
         void Delete(TEntity entity);
+        bool DeleteById(Guid id);
         void DeleteRange(IEnumerable<TEntity> entitites);
 
         //find

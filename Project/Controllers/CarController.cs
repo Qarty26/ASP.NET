@@ -5,8 +5,8 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace Roads.Controllers
 {
-/*    [Route("api/[controller]")]
-    [ApiController]*/
+    [Route("api/[controller]")]
+    [ApiController]
     
     public class CarController : ControllerBase
     {

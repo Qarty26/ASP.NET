@@ -6,8 +6,8 @@ using Roads.Services.UserService;
 
 namespace Roads.Controllers
 {
-/*    [Route("api/[controller]")]
-    [ApiController]*/
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : ControllerBase
     {
 
@@ -26,11 +26,18 @@ namespace Roads.Controllers
             return Ok(_userService.OrderByXp());
         }
 
+        [HttpDelete("DeleteById")]
+        public IActionResult DeleteById(Guid id)
+        {
+            var deleted = _userService.DeleteUserById(id);
+            return Ok(deleted);
+        }
 
-        [HttpGet("Add car to user")]
+//todo
+/*        [HttpPost("Add car to user")]
         public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
         {
             return Ok(_userCarService.AddCarToUser(carDTO, id));
-        }
+        }*/
     }
 }
