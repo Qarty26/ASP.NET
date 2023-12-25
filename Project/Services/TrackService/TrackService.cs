@@ -16,6 +16,12 @@ namespace Roads.Services.TrackService
             _mapper = mapper;
         }
 
+        public TrackDTO GetTrackById(Guid id)
+        {
+            var track = _trackRepository.FindById(id);
+            return _mapper.Map<TrackDTO>(track);
+        }
+
         public List<TrackDTO> GetAllConfirmed()
         {
             var allConfirmed = _trackRepository.GetAllConfirmed();
@@ -40,7 +46,7 @@ namespace Roads.Services.TrackService
             return _mapper.Map<List<TrackDTO>>(newestTracks);
         }
 
-        public bool DeleteHashtagById(Guid id)
+        public bool DeleteTrackById(Guid id)
         {
             return _trackRepository.DeleteById(id);
         }

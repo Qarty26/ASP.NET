@@ -5,6 +5,7 @@ namespace Roads.Services.TrackService
 {
     public interface ITrackService
     {
+        TrackDTO GetTrackById(Guid id);
         List<TrackDTO> GetAllConfirmed();
         List<TrackDTO> GetAllPending();
         List<TrackDTO> OrderByHighestXp();

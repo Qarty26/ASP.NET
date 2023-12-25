@@ -22,6 +22,12 @@ namespace Roads.Controllers
             return Ok(_carService.YearsBetween(startYear, endYear));
         }
 
+        [HttpGet("GetCarById")]
+        public IActionResult GetCarById(Guid id)
+        {
+            return Ok(_carService.GetCarById(id));
+        }
+
         [HttpDelete("DeleteById")]
         public IActionResult DeleteById(Guid id)
         {

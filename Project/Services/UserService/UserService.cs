@@ -16,6 +16,12 @@ namespace Roads.Services.UserService
             _mapper = mapper;
         }
 
+        public UserDTO GetUserById(Guid id)
+        {
+            var user = _userRepository.FindById(id);
+            return _mapper.Map<UserDTO>(user);
+        }
+
         public List<User> OrderByXp()
         {
             var leaderboardByXp = _userRepository.OrderByXp();

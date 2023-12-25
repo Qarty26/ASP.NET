@@ -21,6 +21,12 @@ namespace Roads.Controllers
             return Ok(_hashtagService.GettAllHashtags());
         }
 
+        [HttpGet("GetTagById")]
+        public IActionResult GetTagById(Guid id)
+        {
+            return Ok(_hashtagService.GetHashtagById(id));
+        }
+
         [HttpDelete("DeleteById")]
         public IActionResult DeleteById(Guid id)
         {

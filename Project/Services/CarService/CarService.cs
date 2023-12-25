@@ -22,6 +22,12 @@ namespace Roads.Services.CarService
             return _mapper.Map<List<CarDTO>>(years);
         }
 
+        public CarDTO GetCarById(Guid id)
+        {
+            var car = _carRepository.FindById(id);
+            return _mapper.Map<CarDTO>(car);
+        }
+
         public bool DeleteCarById(Guid id)
         {
             return _carRepository.DeleteById(id);

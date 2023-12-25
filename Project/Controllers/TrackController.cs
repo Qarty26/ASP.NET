@@ -16,6 +16,12 @@ namespace Roads.Controllers
             _trackService = trackService;
         }
 
+        [HttpGet("GetById")]
+        public IActionResult GetTrackById(Guid id)
+        {
+            return Ok(_trackService.GetTrackById(id));
+        }
+
         [HttpGet("All Confirmed")]
         public IActionResult AllConfirmed()
         {

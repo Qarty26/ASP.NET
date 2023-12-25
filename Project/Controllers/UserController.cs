@@ -20,11 +20,19 @@ namespace Roads.Controllers
             _userCarService = userCarService;
         }
 
-        [HttpGet("GetByXp")]
+        [HttpGet("GetByXpDescending")]
         public IActionResult SortByXp()
         {
             return Ok(_userService.OrderByXp());
         }
+
+        [HttpGet("GetById")]
+        public IActionResult GetUserById(Guid id)
+        {
+            return Ok(_userService.GetUserById(id));
+        }
+
+
 
         [HttpDelete("DeleteById")]
         public IActionResult DeleteById(Guid id)

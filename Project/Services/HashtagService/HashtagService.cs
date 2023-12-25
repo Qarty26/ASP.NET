@@ -22,6 +22,12 @@ namespace Roads.Services.HashtagService
             return _mapper.Map<List<HashtagDTO>>(allHashtags);
         }
 
+        public HashtagDTO GetHashtagById(Guid id)
+        {
+            var tag = _hashtagRepository.FindById(id);
+            return _mapper.Map<HashtagDTO>(tag);
+        }
+
         public bool DeleteHashtagById(Guid id)
         {
             return _hashtagRepository.DeleteById(id);
