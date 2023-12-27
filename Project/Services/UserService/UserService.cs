@@ -16,21 +16,12 @@ namespace Roads.Services.UserService
             _mapper = mapper;
         }
 
-        public UserDTO GetUserById(Guid id)
-        {
-            var user = _userRepository.FindById(id);
-            return _mapper.Map<UserDTO>(user);
-        }
 
-        public List<User> OrderByXp()
+/*        public List<User> OrderByXp()
         {
             var leaderboardByXp = _userRepository.OrderByXp();
             return _mapper.Map<List<User>>(leaderboardByXp);
-        }
+        }*/
 
-        public bool DeleteUserById(Guid id)
-        {
-            return _userRepository.DeleteById(id);
-        }
     }
 }

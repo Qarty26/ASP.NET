@@ -19,9 +19,9 @@ namespace Roads.Services.UserCarService
             _carRepository = carRepository;
         }
 
-        public User AddCarToUser(CarDTO carDTO, Guid id)
+        public async Task<User> AddCarToUser(CarDTO carDTO, Guid id)
         {
-            var user = _userRepository.FindById(id);
+            var user = await _userRepository.GetUserById(id);
             var car = _mapper.Map<Car>(carDTO);
             user.Cars.Add(car);
             return user;

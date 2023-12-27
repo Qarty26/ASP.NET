@@ -1,4 +1,6 @@
-﻿using Roads.Helpers.Seeders;
+﻿using Microsoft.AspNetCore.Identity;
+using Roads.Helpers.Seeders;
+using Roads.Models;
 using Roads.Repository.CarRepository;
 using Roads.Repository.HashtagRepository;
 using Roads.Repository.TrackRepository;
@@ -19,6 +21,8 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IHashtagRepository, HashtagRepository>();
+            services.AddScoped<UserManager<User>>();
+            services.AddScoped<RoleManager<IdentityRole<Guid>>>();
 
             return services;
         }

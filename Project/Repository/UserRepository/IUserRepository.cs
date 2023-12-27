@@ -3,8 +3,12 @@ using Roads.Repository.GenericRepository;
 
 namespace Roads.Repository.UserRepository
 {
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository
     {
-        List<User> OrderByXp();
+        Task CreateAsync(User user);
+        Task<User>? GetUserById(Guid id);
+        Task Update(User user);
+        Task Delete(Guid id);
+/*        List<User> OrderByXp();*/
     }
 }

@@ -20,26 +20,11 @@ namespace Roads.Controllers
             _userCarService = userCarService;
         }
 
-        [HttpGet("GetByXpDescending")]
+/*        [HttpGet("GetByXpDescending")]
         public IActionResult SortByXp()
         {
             return Ok(_userService.OrderByXp());
-        }
-
-        [HttpGet("GetById")]
-        public IActionResult GetUserById(Guid id)
-        {
-            return Ok(_userService.GetUserById(id));
-        }
-
-
-
-        [HttpDelete("DeleteById")]
-        public IActionResult DeleteById(Guid id)
-        {
-            var deleted = _userService.DeleteUserById(id);
-            return Ok(deleted);
-        }
+        }*/
 
 //todo
 /*        [HttpPost("Add car to user")]
