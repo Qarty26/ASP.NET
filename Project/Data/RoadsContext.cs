@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roads.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace Roads.Data
 {
-    public class RoadsContext : DbContext
+    public class RoadsContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Hashtag> Hashtags { get; set; }

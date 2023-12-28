@@ -4,6 +4,7 @@ using Roads.Data;
 using Roads.Helpers.Extensions;
 using Roads.Helpers.Seeders;
 using Roads.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
