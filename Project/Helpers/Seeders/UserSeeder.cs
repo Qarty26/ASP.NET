@@ -7,7 +7,7 @@ namespace Roads.Helpers.Seeders
 {
     public class UserSeeder
     {
-        public readonly RoadsContext _roadsContext;
+        private readonly RoadsContext _roadsContext;
 
         public UserSeeder(RoadsContext roadsContext)
         {

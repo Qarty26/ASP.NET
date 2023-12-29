@@ -2,6 +2,7 @@
 {
     public class TrackDTO
     {
+        public Guid Id { get; set; }
         public string? Name { get; set; } = "Unknown name";
         public string? StartPoint { get; set; }
         public string? EndPoint { get; set; }

@@ -23,7 +23,8 @@ namespace Roads.Data
             // one to many
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Cars)
-                .WithOne(c => c.User);
+                .WithOne(c => c.User)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             //many to many
@@ -33,13 +34,16 @@ namespace Roads.Data
             modelBuilder.Entity<UserTrackRelation>()
                 .HasOne(tr => tr.Track)
                 .WithMany(t => t.UserTrackRelations)
-                .HasForeignKey(tr => tr.IdTrack);
+                .HasForeignKey(tr => tr.IdTrack)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
 
             modelBuilder.Entity<UserTrackRelation>()
                 .HasOne(tr => tr.User)
                 .WithMany(u => u.UserTrackRelations)
-                .HasForeignKey(tr => tr.IdUser);
+                .HasForeignKey(tr => tr.IdUser)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             //----------------------------
@@ -49,27 +53,31 @@ namespace Roads.Data
             modelBuilder.Entity<TrackHashtagRelation>()
                 .HasOne(thr => thr.Track)
                 .WithMany(t => t.TrackHashtagRelations)
-                .HasForeignKey(thr => thr.IdTrack);
+                .HasForeignKey(thr => thr.IdTrack)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             modelBuilder.Entity<TrackHashtagRelation>()
                 .HasOne(thr => thr.Hashtag)
                 .WithMany(h => h.TrackHashtagRelations)
-                .HasForeignKey(thr => thr.IdHashtag);
+                .HasForeignKey(thr => thr.IdHashtag)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //-------------------------------
 
             modelBuilder.Entity<TrackCarRelation>().HasKey(tcr => new { tcr.IdCar, tcr.IdTrack });
 
             modelBuilder.Entity<TrackCarRelation>()
-                .HasOne (tcr => tcr.Car)
+                .HasOne(tcr => tcr.Car)
                 .WithMany(c => c.TrackCarRelations)
-                .HasForeignKey (tcr => tcr.IdCar);
+                .HasForeignKey(tcr => tcr.IdCar)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<TrackCarRelation>()
                 .HasOne(tcr => tcr.Track)
                 .WithMany(t => t.TrackCarRelations)
-                .HasForeignKey(tcr => tcr.IdTrack);
+                .HasForeignKey(tcr => tcr.IdTrack)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

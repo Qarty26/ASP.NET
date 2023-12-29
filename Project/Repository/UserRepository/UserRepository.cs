@@ -26,7 +26,7 @@ namespace Roads.Repository.UserRepository
             throw new Exception(result.Errors.First().Description);
         }
 
-        public async Task<User>? GetUserById(Guid id)
+        public async Task<User> GetUserById(Guid id)
         {
             return await _userManager.FindByIdAsync(id.ToString());
         }
