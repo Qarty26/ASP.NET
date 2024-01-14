@@ -51,6 +51,15 @@ namespace Roads.Repository.UserRepository
                 throw new Exception("User delete failed");
         }
 
+        public async Task Update(User user)
+        {
+            user.SecurityStamp = Guid.NewGuid().ToString();
+            if ((await _userManager.UpdateAsync(user)).Succeeded == false)
+                throw new Exception("User update failed");
+        }
+
+
+
 
 
         /*        public List<User> OrderByXp()

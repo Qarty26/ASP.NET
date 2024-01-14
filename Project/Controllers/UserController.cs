@@ -33,18 +33,26 @@ namespace Roads.Controllers
             return Ok(await _userService.GetAllUsersAsync());
         }
 
-        [HttpPost]
+        [HttpPost("Create user")]
         public async Task<IActionResult> CreateUserAsync(UserCreateDTO user)
         {
             return Ok(await _userService.CreateAsync(user));
         }
 
-        [HttpDelete]
+        [HttpPost("Update user")]
+        public async Task<IActionResult> UpdateUserAsync(UserUpdateDTO user)
+        {
+            return Ok(await _userService.Update(user));
+        }
+
+        [HttpDelete("Delete user")]
         public async Task<IActionResult> DeleteUserAsync(Guid id)
         {
             await _userService.Delete(id);
             return Ok();
         }
+
+
 
         /*        [HttpGet("GetByXpDescending")]
                 public IActionResult SortByXp()

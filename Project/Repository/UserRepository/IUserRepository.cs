@@ -10,6 +10,7 @@ namespace Roads.Repository.UserRepository
         Task<User> GetUserById(Guid id);
         Task Delete(Guid id);
         Task<List<User>> GetUsersAsync();
+        Task Update(User user);
 /*        List<User> OrderByXp();*/
     }
 }

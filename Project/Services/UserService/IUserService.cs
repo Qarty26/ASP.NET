@@ -9,6 +9,7 @@ namespace Roads.Services.UserService
         Task<UserDTO> CreateAsync(UserCreateDTO user);
         Task Delete(Guid id);
         Task<List<UserDTO>> GetAllUsersAsync();
+        Task<UserDTO> Update(UserUpdateDTO user);
 
  /*       List<User> OrderByXp();*/
     }
