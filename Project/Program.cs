@@ -73,6 +73,12 @@ void SeedData(IHost app)
         var userService = scope.ServiceProvider.GetService<UserSeeder>();
         userService.SeedInitialUsers();
 
+        var roleService = scope.ServiceProvider.GetService<RoleSeeder>();
+        roleService.SeedInitialRoles();
+
+        var userRoleService = scope.ServiceProvider.GetService<UserRoleSeeder>();
+        userRoleService.SeedInitialUserRole();
+
         var carService = scope.ServiceProvider.GetService<CarSeeder>();
         carService.SeedInitialCars();
 
@@ -81,5 +87,7 @@ void SeedData(IHost app)
 
         var hashtagService = scope.ServiceProvider.GetService<HashtagSeeder>();
         hashtagService.SeedInitialHashtags();
+
+
     }
 }

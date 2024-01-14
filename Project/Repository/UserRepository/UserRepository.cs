@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Roads.Data;
 using Roads.Models;
 using Roads.Repository.GenericRepository;
+using System.ComponentModel;
 
 namespace Roads.Repository.UserRepository
 {
@@ -31,11 +33,9 @@ namespace Roads.Repository.UserRepository
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
-        public async Task Update(User user)
+        public async Task<List<User>> GetUsersAsync()
         {
-            user.SecurityStamp = Guid.NewGuid().ToString();
-            if ((await _userManager.UpdateAsync(user)).Succeeded == false)
-                throw new Exception("User update failed");
+            return await _userManager.Users.ToListAsync();
         }
 
         public async Task Delete(Guid userId)

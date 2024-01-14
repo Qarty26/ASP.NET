@@ -12,6 +12,9 @@ namespace Roads.Helpers
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
 
+            CreateMap<User, UserCreateDTO>();
+            CreateMap<UserCreateDTO, User>();
+
             CreateMap<Track, TrackDTO>();
             CreateMap<TrackDTO, Track>();
 

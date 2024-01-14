@@ -6,6 +6,10 @@ namespace Roads.Services.UserService
     public interface IUserService
     {
         Task<UserDTO> GetUserById(Guid id);
+        Task<UserDTO> CreateAsync(UserCreateDTO user);
+        Task Delete(Guid id);
+        Task<List<UserDTO>> GetAllUsersAsync();
+
  /*       List<User> OrderByXp();*/
     }
 }

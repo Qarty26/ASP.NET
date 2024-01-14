@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using Roads.Models;
 using Roads.Models.DTOs;
 using Roads.Services.UserCarService;
@@ -20,17 +21,42 @@ namespace Roads.Controllers
             _userCarService = userCarService;
         }
 
-/*        [HttpGet("GetByXpDescending")]
-        public IActionResult SortByXp()
+        [HttpGet("Get user by id")]
+        public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(_userService.OrderByXp());
-        }*/
+            return Ok(await _userService.GetUserById(id));
+        }
 
-//todo
-/*        [HttpPost("Add car to user")]
-        public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
+        [HttpGet("Get all users")]
+        public async Task<IActionResult> GetAllUsers()
         {
-            return Ok(_userCarService.AddCarToUser(carDTO, id));
-        }*/
+            return Ok(await _userService.GetAllUsersAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUserAsync(UserCreateDTO user)
+        {
+            return Ok(await _userService.CreateAsync(user));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUserAsync(Guid id)
+        {
+            await _userService.Delete(id);
+            return Ok();
+        }
+
+        /*        [HttpGet("GetByXpDescending")]
+                public IActionResult SortByXp()
+                {
+                    return Ok(_userService.OrderByXp());
+                }*/
+
+        //todo
+        /*        [HttpPost("Add car to user")]
+                public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
+                {
+                    return Ok(_userCarService.AddCarToUser(carDTO, id));
+                }*/
     }
 }

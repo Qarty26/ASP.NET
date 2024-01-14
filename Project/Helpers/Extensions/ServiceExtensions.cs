@@ -42,6 +42,8 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<TrackSeeder>();
             services.AddTransient<CarSeeder>();
             services.AddTransient<HashtagSeeder>();
+            services.AddTransient<RoleSeeder>();
+            services.AddTransient<UserRoleSeeder>();
 
             return services;
         }

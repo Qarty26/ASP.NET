@@ -19,7 +19,7 @@ namespace Roads.Services.UserService
             _userManager = userManager;
         }
 
-        public async Task<UserDTO> CreateAsync(UserDTO user)
+        public async Task<UserDTO> CreateAsync(UserCreateDTO user)
         {
             var newUser = _mapper.Map<User>(user);
             await _userRepository.CreateAsync(newUser);
@@ -33,17 +33,25 @@ namespace Roads.Services.UserService
             return _mapper.Map<UserDTO>(user);
         }
 
+        public async Task<List<UserDTO>> GetAllUsersAsync()
+        {
+            var users = await _userRepository.GetUsersAsync();
+            if (users == null) throw new Exception("No users found");
+            return _mapper.Map<List<UserDTO>>(users);
+        }
+
         public async Task Delete(Guid id)
         {
             await _userRepository.Delete(id);
         }
-
-
-/*        public List<User> OrderByXp()
-        {
-            var leaderboardByXp = _userRepository.OrderByXp();
-            return _mapper.Map<List<User>>(leaderboardByXp);
-        }*/
-
     }
+
+
+    /*        public List<User> OrderByXp()
+            {
+                var leaderboardByXp = _userRepository.OrderByXp();
+                return _mapper.Map<List<User>>(leaderboardByXp);
+            }*/
+
 }
+

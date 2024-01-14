@@ -8,8 +8,8 @@ namespace Roads.Repository.UserRepository
     {
         Task CreateAsync(User user);
         Task<User> GetUserById(Guid id);
-        Task Update(User user);
         Task Delete(Guid id);
+        Task<List<User>> GetUsersAsync();
 /*        List<User> OrderByXp();*/
     }
 }
