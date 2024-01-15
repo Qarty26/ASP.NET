@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Services.CarService;
 using System.Reflection.Metadata.Ecma335;
 
@@ -10,7 +11,7 @@ namespace Roads.Controllers
     
     public class CarController : ControllerBase
     {
-        public readonly ICarService _carService; 
+        private readonly ICarService _carService; 
         public CarController(ICarService carService)
         {
             _carService = carService;
@@ -26,6 +27,26 @@ namespace Roads.Controllers
         public IActionResult GetCarById(Guid id)
         {
             return Ok(_carService.GetCarById(id));
+        }
+
+        [HttpGet("Get All Cars")]
+        public async Task<IActionResult> GetAllCars()
+        {
+            return Ok(await _carService.GetAllCars());
+        }
+
+        [HttpPost("Add Car")]
+        public async Task<IActionResult> CreateCarAsync(CarCreateDTO car)
+        {
+            await _carService.CreateCar(car);
+            return Ok();
+        }
+
+        [HttpPost("Update Car")]
+        public IActionResult UpdateCar(CarDTO car)
+        {
+            _carService.UpdateCar(car);
+            return Ok();
         }
 
         [HttpDelete("DeleteById")]

@@ -24,6 +24,9 @@ namespace Roads.Helpers
             CreateMap<Car, CarDTO>();
             CreateMap<CarDTO, Car>();
 
+            CreateMap<Car, CarCreateDTO>();
+            CreateMap<CarCreateDTO, Car>();
+
             CreateMap<Hashtag, HashtagDTO>();
             CreateMap<HashtagDTO, Hashtag>();
         }

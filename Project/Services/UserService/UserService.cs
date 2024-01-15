@@ -68,7 +68,29 @@ namespace Roads.Services.UserService
             return _mapper.Map<UserDTO>(existingUser);
         }
 
+        public async Task<Guid> Login(LoginDTO loginDto)
+        {
+            var email = await _userManager.FindByEmailAsync(loginDto.Email);
+            if(email == null)
+            {
+                throw new Exception("The email does not exist");
+            }
 
+            var result = await _signInManager.CheckPasswordSignInAsync(email,loginDto.Password, lockoutOnFailure: false);
+            
+            if(result.Succeeded)
+            {
+                await _signInManager.SignInAsync(email, isPersistent: true);
+                return email.Id;
+            }
+
+            throw new Exception("Wrong password");
+        }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
 
     }
 

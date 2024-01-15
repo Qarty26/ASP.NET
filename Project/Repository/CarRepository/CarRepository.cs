@@ -15,5 +15,6 @@ namespace Roads.Repository.CarRepository
         {
             return _table.AsNoTracking().Where(x => x.Year >= startYear && x.Year <= endYear).ToList();
         }
+
     }
 }

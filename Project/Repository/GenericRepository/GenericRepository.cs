@@ -35,6 +35,7 @@ namespace Roads.Repository.GenericRepository
         public async Task CreateAsync(TEntity entity)
         {
             await _table.AddAsync(entity);
+            await _roadsContext.SaveChangesAsync();
         }
 
         public void CreateRange(IEnumerable<TEntity> entities)
@@ -51,6 +52,7 @@ namespace Roads.Repository.GenericRepository
         public void Update(TEntity entity)
         {
             _table.Update(entity);
+            _roadsContext.SaveChanges();
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)

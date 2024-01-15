@@ -10,6 +10,8 @@ namespace Roads.Services.UserService
         Task Delete(Guid id);
         Task<List<UserDTO>> GetAllUsersAsync();
         Task<UserDTO> Update(UserUpdateDTO user);
+        Task<Guid> Login(LoginDTO loginDto);
+        Task Logout();
 
  /*       List<User> OrderByXp();*/
     }

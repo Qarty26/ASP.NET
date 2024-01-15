@@ -28,6 +28,24 @@ namespace Roads.Services.CarService
             return _mapper.Map<CarDTO>(car);
         }
 
+        public async Task<List<CarDTO>> GetAllCars()
+        {
+            var cars = await _carRepository.GetAllAsync();
+            return _mapper.Map<List<CarDTO>>(cars);
+        }
+
+        public async Task CreateCar(CarCreateDTO car)
+        {
+            var vcar = _mapper.Map<Car>(car);
+            await _carRepository.CreateAsync(vcar);
+        }
+
+        public void UpdateCar(CarDTO car)
+        {
+            var vcar = _mapper.Map<Car>(car);
+            _carRepository.Update(vcar);
+        }
+
         public bool DeleteCarById(Guid id)
         {
             return _carRepository.DeleteById(id);
