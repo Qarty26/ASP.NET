@@ -22,11 +22,17 @@ namespace Roads.Controllers
             return Ok(_trackService.GetTrackById(id));
         }
 
+        [HttpGet("All tracks")]
+        public async Task<IActionResult> GetAllTracks()
+        {
+            return Ok(await _trackService.GetAll());
+        }
+
         [HttpGet("All Confirmed")]
         public IActionResult AllConfirmed()
         {
-            return Ok(_trackService.GetAllConfirmed())
-; }
+            return Ok(_trackService.GetAllConfirmed());
+        }
 
         [HttpGet("All pending")]
         public IActionResult AllPending()
@@ -45,6 +51,20 @@ namespace Roads.Controllers
         public IActionResult OrderByNewest()
         {
             return Ok(_trackService.OrderByNewest());
+        }
+
+        [HttpPost("Add Track")]
+        public async Task<IActionResult> AddTrackAsync(TrackCreateDTO track)
+        {
+            await _trackService.CreateTrack(track);
+            return Ok();
+        }
+
+        [HttpPost("Update Track")]
+        public IActionResult AddTrackAsync(TrackDTO track)
+        {
+            _trackService.Update(track);
+            return Ok();
         }
 
         [HttpDelete("DeleteById")]

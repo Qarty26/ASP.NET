@@ -21,6 +21,9 @@ namespace Roads.Helpers
             CreateMap<Track, TrackDTO>();
             CreateMap<TrackDTO, Track>();
 
+            CreateMap<Track, TrackCreateDTO>();
+            CreateMap<TrackCreateDTO, Track>();
+
             CreateMap<Car, CarDTO>();
             CreateMap<CarDTO, Car>();
 

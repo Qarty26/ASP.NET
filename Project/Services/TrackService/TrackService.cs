@@ -22,6 +22,12 @@ namespace Roads.Services.TrackService
             return _mapper.Map<TrackDTO>(track);
         }
 
+        public async Task<List<TrackDTO>> GetAll()
+        {
+            var tracks = await _trackRepository.GetAllAsync();
+            return _mapper.Map<List<TrackDTO>>(tracks);
+        }
+
         public List<TrackDTO> GetAllConfirmed()
         {
             var allConfirmed = _trackRepository.GetAllConfirmed();
@@ -32,6 +38,18 @@ namespace Roads.Services.TrackService
         {
             var allPending = _trackRepository.GetAllPending();
             return _mapper.Map<List<TrackDTO>>(allPending);
+        }
+
+        public void Update(TrackDTO track)
+        {
+            var vtrack = _mapper.Map<Track>(track);
+            _trackRepository.Update(vtrack);
+        }
+
+        public async Task CreateTrack(TrackCreateDTO track)
+        {
+            var vtrack = _mapper.Map<Track>(track);
+            await _trackRepository.CreateAsync(vtrack);
         }
 
         public List<TrackDTO> OrderByHighestXp()
