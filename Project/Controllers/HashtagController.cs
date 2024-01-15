@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Services.HashtagService;
 
 namespace Roads.Controllers
@@ -18,13 +19,27 @@ namespace Roads.Controllers
         [HttpGet("GetAllTags")]
         public IActionResult GetAllTags()
         {
-            return Ok(_hashtagService.GettAllHashtags());
+            return Ok(_hashtagService.GetAllHashtags());
         }
 
         [HttpGet("GetTagById")]
         public IActionResult GetTagById(Guid id)
         {
             return Ok(_hashtagService.GetHashtagById(id));
+        }
+
+        [HttpPost("AddHashtag")]
+        public async Task<IActionResult> AddTag(HashtagCreateDTO tag)
+        {
+            await _hashtagService.CreateHashtag(tag);
+            return Ok(tag);
+        }
+
+        [HttpPost("Update Hashtag")]
+        public IActionResult UpdateTag(HashtagDTO tag)
+        {
+            _hashtagService.UpdateHashtag(tag);
+            return Ok(tag);
         }
 
         [HttpDelete("DeleteById")]
@@ -34,11 +49,6 @@ namespace Roads.Controllers
             return Ok(deleted);
         }
 
-        //todo
-        /*        [HttpPost("AddHashtag")]
-                public IActionResult AddTag(Hashtag tag)
-                {
-                    return Ok(_hashtagService.AddTag(tag));
-                }*/
+
     }
 }

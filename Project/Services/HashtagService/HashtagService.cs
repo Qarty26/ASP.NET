@@ -16,7 +16,7 @@ namespace Roads.Services.HashtagService
             _mapper = mapper;
         }
 
-        public List<HashtagDTO> GettAllHashtags()
+        public List<HashtagDTO> GetAllHashtags()
         {
             var allHashtags = _hashtagRepository.GetAll();
             return _mapper.Map<List<HashtagDTO>>(allHashtags);
@@ -26,6 +26,18 @@ namespace Roads.Services.HashtagService
         {
             var tag = _hashtagRepository.FindById(id);
             return _mapper.Map<HashtagDTO>(tag);
+        }
+
+        public async Task CreateHashtag(HashtagCreateDTO tag)
+        {
+            var hashtag = _mapper.Map<Hashtag>(tag);
+            await _hashtagRepository.CreateAsync(hashtag);
+        }
+
+        public void UpdateHashtag(HashtagDTO tag)
+        {
+            var hashtag = _mapper.Map<Hashtag>(tag);
+            _hashtagRepository.Update(hashtag);
         }
 
         public bool DeleteHashtagById(Guid id)

@@ -32,6 +32,9 @@ namespace Roads.Helpers
 
             CreateMap<Hashtag, HashtagDTO>();
             CreateMap<HashtagDTO, Hashtag>();
+
+            CreateMap<Hashtag, HashtagCreateDTO>();
+            CreateMap<HashtagCreateDTO, Hashtag>();
         }
     }
 }
