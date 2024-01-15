@@ -7,6 +7,7 @@ namespace Roads.Models
 {
     public class User : IdentityUser<Guid>
     {
+        public string? DeviceToken { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public DateTime? Birthday { get; set; }

@@ -5,6 +5,8 @@ using Roads.Helpers.Extensions;
 using Roads.Helpers.Seeders;
 using Roads.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -38,6 +40,11 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.SignIn.RequireConfirmedAccount = false;
     opt.SignIn.RequireConfirmedEmail = false;
     opt.SignIn.RequireConfirmedPhoneNumber = false;
+});
+
+FirebaseApp.Create(new AppOptions()
+{
+    Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "roads-26-firebase-adminsdk-8y7lv-bab55fd584.json"))
 });
 
 builder.Services.AddEndpointsApiExplorer();
