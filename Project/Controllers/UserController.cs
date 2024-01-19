@@ -21,6 +21,32 @@ namespace Roads.Controllers
             _userCarService = userCarService;
         }
 
+        [HttpPost("Sign Up")]
+        public async Task<IActionResult> SignUp(UserSignUpDTO user)
+        {
+            return Ok(await _userService.SignUp(user));
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginDTO user)
+        {
+            return Ok(await _userService.Login(user));
+        }
+
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+            return Ok();
+        }
+
+        [HttpGet("Comfirm Email")]
+        public async Task<IActionResult> ConfirmEmail(string email, string token)
+        {
+            return Ok(await _userService.ConfirmEmail(email, token));
+        }
+
+
         [HttpGet("Get user by id")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -51,7 +77,6 @@ namespace Roads.Controllers
             await _userService.Delete(id);
             return Ok();
         }
-
 
 
         /*        [HttpGet("GetByXpDescending")]

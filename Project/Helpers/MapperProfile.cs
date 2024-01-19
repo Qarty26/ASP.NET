@@ -18,6 +18,9 @@ namespace Roads.Helpers
             CreateMap<User, UserUpdateDTO>();
             CreateMap<UserUpdateDTO, User>();
 
+            CreateMap<User, UserSignUpDTO>();
+            CreateMap<UserSignUpDTO, User>();
+
             CreateMap<Track, TrackDTO>()
                 .ForMember(t => t.Map, opt => opt.MapFrom(src => new MapDTO
                 {

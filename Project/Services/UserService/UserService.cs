@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Models.Errors;
 using Roads.Repository.UserRepository;
 
 namespace Roads.Services.UserService
@@ -13,6 +14,7 @@ namespace Roads.Services.UserService
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        //will be used for smtp 
         private readonly IConfiguration _configuration;
 
         public UserService(IUserRepository userRepository, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
@@ -91,6 +93,58 @@ namespace Roads.Services.UserService
         public async Task Logout()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<ErrorResponse> SignUp(UserSignUpDTO signup)
+        {
+            var existsUser = await _userManager.FindByEmailAsync(signup.Email);
+
+            if (existsUser != null)
+                throw new Exception("Email is already used");
+
+            var user = _mapper.Map<User>(signup);
+            var result = await _userManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Regular");
+
+                return new ErrorResponse()
+                {
+                    StatusCode = 200,
+                    Message = "Register was successful"
+                };
+            }
+            throw new Exception(result.Errors.First().Description);
+        }
+
+        public async Task<ErrorResponse> ConfirmEmail(string email, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return new ErrorResponse()
+                {
+                    StatusCode = 400,
+                    Message = "There is no user with this email"
+                };
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return new ErrorResponse()
+                {
+                    StatusCode = 200,
+                    Message = "Confirmation successfull"
+                };
+            }
+
+            return new ErrorResponse()
+            {
+                StatusCode = 500,
+                Message = "Confirmation failed"
+            };
         }
 
 
