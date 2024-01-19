@@ -11,6 +11,7 @@ namespace Roads.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Hashtag> Hashtags { get; set; }
         public DbSet<Track> Tracks { get; set; }
+        public DbSet<Map> Maps { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<UserTrackRelation> TrackRelations { get; set; }
         public DbSet<TrackHashtagRelation> TrackHashtagRelations { get; set; }
@@ -20,6 +21,15 @@ namespace Roads.Data
         public RoadsContext(DbContextOptions<RoadsContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // one to one
+
+            modelBuilder.Entity<Track>()
+                .HasOne(m => m.Map)
+                .WithOne(t => t.Track)
+                .HasForeignKey<Map>(a => a.IdTrack)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
             // one to many
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Cars)

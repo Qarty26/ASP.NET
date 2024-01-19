@@ -19,10 +19,9 @@ namespace Roads.Helpers.Seeders
                 var track1 = new Track
                 {
                     Name = "Poiana",
-                    StartPoint = "Brasov",
-                    EndPoint = "Poiana Brasov",
                     Xp = 100,
-                    Confirmed = true
+                    Confirmed = true,
+                    Map = _roadsContext.Maps.FirstOrDefault(m => m.Id == new Guid("ddec615f-f49a-4e94-a1bf-17f312d2d7a3"))
                 };
 
                 _roadsContext.Tracks.Add(track1);

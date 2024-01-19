@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Roads.Models;
 using Roads.Models.DTOs;
 using Roads.Repository.UserRepository;
@@ -71,14 +72,14 @@ namespace Roads.Services.UserService
         public async Task<Guid> Login(LoginDTO loginDto)
         {
             var email = await _userManager.FindByEmailAsync(loginDto.Email);
-            if(email == null)
+            if (email == null)
             {
                 throw new Exception("The email does not exist");
             }
 
-            var result = await _signInManager.CheckPasswordSignInAsync(email,loginDto.Password, lockoutOnFailure: false);
-            
-            if(result.Succeeded)
+            var result = await _signInManager.CheckPasswordSignInAsync(email, loginDto.Password, lockoutOnFailure: false);
+
+            if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(email, isPersistent: true);
                 return email.Id;
@@ -92,14 +93,13 @@ namespace Roads.Services.UserService
             await _signInManager.SignOutAsync();
         }
 
+
+
+        /*        public List<User> OrderByXp()
+                {
+                    var leaderboardByXp = _userRepository.OrderByXp();
+                    return _mapper.Map<List<User>>(leaderboardByXp);
+                }*/
     }
-
-
-    /*        public List<User> OrderByXp()
-            {
-                var leaderboardByXp = _userRepository.OrderByXp();
-                return _mapper.Map<List<User>>(leaderboardByXp);
-            }*/
-
 }
 

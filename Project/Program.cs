@@ -89,6 +89,9 @@ void SeedData(IHost app)
         var carService = scope.ServiceProvider.GetService<CarSeeder>();
         carService.SeedInitialCars();
 
+        var mapService = scope.ServiceProvider.GetService<MapSeeder>();
+        mapService.SeedInitialMaps();
+
         var trackService = scope.ServiceProvider.GetService<TrackSeeder>();
         trackService.SeedInitialTracks();
 

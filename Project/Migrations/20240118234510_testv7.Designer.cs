@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roads.Data;
 
@@ -11,9 +12,11 @@ using Roads.Data;
 namespace Roads.Migrations
 {
     [DbContext(typeof(RoadsContext))]
-    partial class RoadsContextModelSnapshot : ModelSnapshot
+    [Migration("20240118234510_testv7")]
+    partial class testv7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,9 +231,6 @@ namespace Roads.Migrations
                     b.Property<DateTime?>("FirstCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("IdTrack")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
@@ -241,9 +241,6 @@ namespace Roads.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdTrack")
-                        .IsUnique();
 
                     b.ToTable("Maps");
                 });
@@ -468,7 +465,7 @@ namespace Roads.Migrations
                 {
                     b.HasOne("Roads.Models.Track", "Track")
                         .WithOne("Map")
-                        .HasForeignKey("Roads.Models.Map", "IdTrack")
+                        .HasForeignKey("Roads.Models.Map", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

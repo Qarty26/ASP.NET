@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roads.Data;
 
@@ -11,9 +12,11 @@ using Roads.Data;
 namespace Roads.Migrations
 {
     [DbContext(typeof(RoadsContext))]
-    partial class RoadsContextModelSnapshot : ModelSnapshot
+    [Migration("20240118232629_testv6")]
+    partial class testv6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,6 +262,9 @@ namespace Roads.Migrations
 
                     b.Property<DateTime?>("FirstCreated")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdMap")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
