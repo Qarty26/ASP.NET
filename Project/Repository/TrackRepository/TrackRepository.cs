@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roads.Data;
 using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Repository.GenericRepository;
 
 namespace Roads.Repository.TrackRepository
@@ -13,22 +14,29 @@ namespace Roads.Repository.TrackRepository
 
         public List<Track> GetAllConfirmed()
         {
-            return _table.AsNoTracking().Where(x => x.Confirmed).ToList();
+            return _table.Include(t => t.Map).AsNoTracking().Where(x => x.Confirmed).ToList();
         }
 
         public List<Track> GetAllPending()
         {
-            return _table.AsNoTracking().Where(x => !x.Confirmed).ToList();
+            return _table.Include(t => t.Map).AsNoTracking().Where(x => !x.Confirmed).ToList();
         }
 
         public List<Track> OrderByHighestXp()
         {
-            return _table.OrderByDescending(x => x.Xp).ToList();
+            return _table.Include(t => t.Map).OrderByDescending(x => x.Xp).ToList();
         }
 
         public List<Track> OrderByNewest()
         {
-            return _table.OrderByDescending(x => x.FirstCreated).ToList();
+            return _table.Include(t => t.Map).OrderByDescending(x => x.FirstCreated).ToList();
+        }
+
+        public List<Track> GetAllTracksWithMap()
+        {
+            return _table.AsNoTracking()
+                .Include(t => t.Map)
+                .ToList();
         }
     }
 }

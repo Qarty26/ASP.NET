@@ -12,7 +12,7 @@ namespace Roads.Models
         public int Xp { get; set; } = 0;
         public bool Confirmed { get; set; } = false;
 
-        public Map Map { get; set; }
+        public Map? Map { get; set; }
         public ICollection<TrackHashtagRelation>? TrackHashtagRelations { get; set; }
         public ICollection<UserTrackRelation>? UserTrackRelations { get; set; }
         public ICollection<TrackCarRelation>? TrackCarRelations { get; set; }

@@ -7,6 +7,7 @@ namespace Roads.Services.TrackService
     {
         TrackDTO GetTrackById(Guid id);
         Task<List<TrackDTO>> GetAll();
+        List<TrackDTO> GetAllWithMap();
         List<TrackDTO> GetAllConfirmed();
         List<TrackDTO> GetAllPending();
         List<TrackDTO> OrderByHighestXp();

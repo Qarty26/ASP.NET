@@ -9,6 +9,7 @@ namespace Roads.Repository.TrackRepository
         List<Track> GetAllPending();
         List<Track> OrderByHighestXp();
         List<Track> OrderByNewest();
+        List<Track> GetAllTracksWithMap();
     }
 
 }

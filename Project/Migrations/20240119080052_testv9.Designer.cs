@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roads.Data;
 
@@ -11,9 +12,11 @@ using Roads.Data;
 namespace Roads.Migrations
 {
     [DbContext(typeof(RoadsContext))]
-    partial class RoadsContextModelSnapshot : ModelSnapshot
+    [Migration("20240119080052_testv9")]
+    partial class testv9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -544,7 +547,8 @@ namespace Roads.Migrations
 
             modelBuilder.Entity("Roads.Models.Track", b =>
                 {
-                    b.Navigation("Map");
+                    b.Navigation("Map")
+                        .IsRequired();
 
                     b.Navigation("TrackCarRelations");
 

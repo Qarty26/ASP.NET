@@ -9,7 +9,7 @@ namespace Roads.Models
         public double EndLatitude { get; set; }
         public double EndLongitude { get; set; }
 
-        public Guid IdTrack { get; set; }
-        public Track Track { get; set; }
+        public Guid? IdTrack { get; set; }
+        public Track? Track { get; set; }
     }
 }

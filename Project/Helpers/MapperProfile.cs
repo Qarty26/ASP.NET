@@ -7,7 +7,7 @@ namespace Roads.Helpers
     public class MapperProfile : Profile
     {
 
-        public MapperProfile() 
+        public MapperProfile()
         {
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
@@ -18,7 +18,14 @@ namespace Roads.Helpers
             CreateMap<User, UserUpdateDTO>();
             CreateMap<UserUpdateDTO, User>();
 
-            CreateMap<Track, TrackDTO>();
+            CreateMap<Track, TrackDTO>()
+                .ForMember(t => t.Map, opt => opt.MapFrom(src => new MapDTO
+                {
+                    StartLatitude = src.Map.StartLatitude,
+                    StartLongitude = src.Map.StartLongitude,
+                    EndLatitude = src.Map.EndLatitude,
+                    EndLongitude = src.Map.EndLongitude
+                }));
             CreateMap<TrackDTO, Track>();
 
             CreateMap<Track, TrackCreateDTO>();

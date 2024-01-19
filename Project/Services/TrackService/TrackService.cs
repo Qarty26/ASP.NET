@@ -28,6 +28,12 @@ namespace Roads.Services.TrackService
             return _mapper.Map<List<TrackDTO>>(tracks);
         }
 
+
+        public List<TrackDTO> GetAllWithMap()
+        {
+            var tracks = _trackRepository.GetAllTracksWithMap();
+            return _mapper.Map<List<TrackDTO>>(tracks);
+        }
         public List<TrackDTO> GetAllConfirmed()
         {
             var allConfirmed = _trackRepository.GetAllConfirmed();

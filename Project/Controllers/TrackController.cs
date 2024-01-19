@@ -28,6 +28,12 @@ namespace Roads.Controllers
             return Ok(await _trackService.GetAll());
         }
 
+        [HttpGet("All tracks with map")]
+        public IActionResult GetAllTracksWithMaps()
+        {
+            return Ok(_trackService.GetAllWithMap());
+        }
+
         [HttpGet("All Confirmed")]
         public IActionResult AllConfirmed()
         {
