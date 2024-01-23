@@ -19,12 +19,31 @@ namespace Roads.Services.UserCarService
             _carRepository = carRepository;
         }
 
-        public async Task<User> AddCarToUser(CarDTO carDTO, Guid id)
+        public async Task AddCarToUser(Guid idCar, Guid idUser)
         {
-            var user = await _userRepository.GetUserById(id);
-            var car = _mapper.Map<Car>(carDTO);
-            user.Cars.Add(car);
-            return user;
+            var user = await _userRepository.GetUserById(idUser);
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+            var car = await _carRepository.FindByIdAsync(idCar);
+            
+            car.IdUser = idUser;
+            _carRepository.Update(car);
+        }
+
+        public async Task CreateCarToUser(CarDTO car, Guid idUser)
+        {
+            var user = await _userRepository.GetUserById(idUser);
+            if (user == null)
+            {
+                throw new Exception("User does not exist");
+            }
+            var _car = _mapper.Map<Car>(car);
+            await _carRepository.CreateAsync(_car);
+            _car.IdUser = idUser;
+
+            _carRepository.Update(_car);
         }
     }
 }

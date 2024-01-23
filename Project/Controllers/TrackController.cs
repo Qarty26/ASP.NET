@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Repository.TrackHashtagRepository;
+using Roads.Services.TrackHashtagService;
 using Roads.Services.TrackService;
 
 namespace Roads.Controllers
@@ -10,10 +12,12 @@ namespace Roads.Controllers
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;
+        private readonly ITrackHashtagService _trackHashtagService;
 
-        public TrackController(ITrackService trackService)
+        public TrackController(ITrackService trackService, ITrackHashtagService trackHashtagService)
         {
             _trackService = trackService;
+            _trackHashtagService = trackHashtagService;
         }
 
         [HttpGet("GetById")]
@@ -32,6 +36,12 @@ namespace Roads.Controllers
         public IActionResult GetAllTracksWithMaps()
         {
             return Ok(_trackService.GetAllWithMap());
+        }
+
+        [HttpGet("All tracks with tags")]
+        public IActionResult GetAllTracksWithTags()
+        {
+            return Ok(_trackService.GetAllWithTags());
         }
 
         [HttpGet("All Confirmed")]
@@ -53,7 +63,7 @@ namespace Roads.Controllers
             return Ok(_trackService.OrderByHighestXp());
         }
 
-        [HttpGet("Order bt newest")]
+        [HttpGet("Order by newest")]
         public IActionResult OrderByNewest()
         {
             return Ok(_trackService.OrderByNewest());
@@ -63,6 +73,13 @@ namespace Roads.Controllers
         public async Task<IActionResult> AddTrackAsync(TrackCreateDTO track)
         {
             await _trackService.CreateTrack(track);
+            return Ok();
+        }
+
+        [HttpPost("Add Tags to Track")]
+        public async Task<IActionResult> AddTagToTrack(Guid idTrack, Guid idTag)
+        {
+            await _trackHashtagService.AddHashtagToTrack(idTrack, idTag);
             return Ok();
         }
 

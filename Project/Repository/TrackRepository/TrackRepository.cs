@@ -38,5 +38,12 @@ namespace Roads.Repository.TrackRepository
                 .Include(t => t.Map)
                 .ToList();
         }
+
+        public List<Track> GetAllWithTags()
+        {
+            return _table.AsNoTracking()
+                .Include(h => h.TrackHashtagRelations)
+                .ToList();
+        }
     }
 }

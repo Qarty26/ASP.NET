@@ -34,6 +34,7 @@ namespace Roads.Data
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Cars)
                 .WithOne(c => c.User)
+                .HasForeignKey(a => a.IdUser)
                 .OnDelete(DeleteBehavior.Cascade);
 
 

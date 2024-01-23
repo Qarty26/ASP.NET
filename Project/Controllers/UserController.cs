@@ -61,6 +61,12 @@ namespace Roads.Controllers
             return Ok(await _userService.GetAllUsersAsync());
         }
 
+        [HttpGet("Get all users with cars and tracks")]
+        public async Task<IActionResult> GetAllUsersWithCarsAndTracks()
+        {
+            return Ok(await _userService.GetAllUsersWithCarsAsync());
+        }
+
         [HttpPost("Create user")]
         public async Task<IActionResult> CreateUserAsync(UserCreateDTO user)
         {
@@ -87,11 +93,18 @@ namespace Roads.Controllers
             return Ok( await _userService.OrderByXp());
         }
 
-        //todo
-        /*        [HttpPost("Add car to user")]
-                public IActionResult AddCarToUser(CarDTO carDTO, Guid id)
-                {
-                    return Ok(_userCarService.AddCarToUser(carDTO, id));
-                }*/
+        [HttpPost("Add car to user")]
+        public async Task<IActionResult> AddCarToUser(Guid idCar, Guid idUser)
+        {
+            await _userCarService.AddCarToUser(idCar, idUser);
+            return Ok();
+        }
+
+        [HttpPost("Create car for user")]
+        public async Task<IActionResult> CreateCarToUser(CarDTO car, Guid idUser)
+        {
+            await _userCarService.CreateCarToUser(car, idUser);
+            return Ok();
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace Roads.Services.UserCarService
 {
     public interface IUserCarService
     {
-        Task<User> AddCarToUser(CarDTO carDTO, Guid id);
+        Task AddCarToUser(Guid idCar, Guid idUser);
+        Task CreateCarToUser(CarDTO car, Guid idUser);
     }
 }

@@ -15,5 +15,6 @@ namespace Roads.Services.TrackService
         void Update(TrackDTO track);
         Task CreateTrack(TrackCreateDTO track);
         bool DeleteTrackById(Guid id);
+        List<TrackWithTagsDTO> GetAllWithTags();
     }
 }

@@ -46,6 +46,13 @@ namespace Roads.Services.UserService
             if (users == null) throw new Exception("No users found");
             return _mapper.Map<List<UserDTO>>(users);
         }
+
+        public async Task<List<UserWithCarAndTrackDTO>> GetAllUsersWithCarsAsync()
+        {
+            var users = await _userRepository.GetUsersWIthCarsAsync();
+            if (users == null) throw new Exception("No users found");
+            return _mapper.Map<List<UserWithCarAndTrackDTO>>(users);
+        }
         public async Task Delete(Guid id)
         {
             await _userRepository.Delete(id);

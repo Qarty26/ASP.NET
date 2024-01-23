@@ -34,6 +34,13 @@ namespace Roads.Services.TrackService
             var tracks = _trackRepository.GetAllTracksWithMap();
             return _mapper.Map<List<TrackDTO>>(tracks);
         }
+
+        public List<TrackWithTagsDTO> GetAllWithTags()
+        {
+            var tracks = _trackRepository.GetAllWithTags();
+            return _mapper.Map<List<TrackWithTagsDTO>>(tracks);
+        }
+
         public List<TrackDTO> GetAllConfirmed()
         {
             var allConfirmed = _trackRepository.GetAllConfirmed();

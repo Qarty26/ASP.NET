@@ -38,6 +38,11 @@ namespace Roads.Repository.UserRepository
             return await _userManager.Users.ToListAsync();
         }
 
+        public async Task<List<User>> GetUsersWIthCarsAsync()
+        {
+            return await _userManager.Users.Include(c => c.Cars).AsNoTracking().ToListAsync();
+        }
+
         public async Task<List<User>> OrderByXp()
         {
             return await _userManager.Users.OrderByDescending(x => x.Experience).ToListAsync();

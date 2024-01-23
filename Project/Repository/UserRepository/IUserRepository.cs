@@ -12,5 +12,6 @@ namespace Roads.Repository.UserRepository
         Task<List<User>> GetUsersAsync();
         Task Update(User user);
         Task<List<User>> OrderByXp();
+        Task<List<User>> GetUsersWIthCarsAsync();
     }
 }

@@ -10,6 +10,7 @@ namespace Roads.Repository.TrackRepository
         List<Track> OrderByHighestXp();
         List<Track> OrderByNewest();
         List<Track> GetAllTracksWithMap();
+        List<Track> GetAllWithTags();
     }
 
 }
