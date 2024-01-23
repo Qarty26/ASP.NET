@@ -1,4 +1,4 @@
-<!-- Your main Vue.js file -->
+import axios from './helpers/AxiosInstance'
 <template>
   <div id="app">
     <google-map></google-map>
