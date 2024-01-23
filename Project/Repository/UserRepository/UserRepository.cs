@@ -38,6 +38,11 @@ namespace Roads.Repository.UserRepository
             return await _userManager.Users.ToListAsync();
         }
 
+        public async Task<List<User>> OrderByXp()
+        {
+            return await _userManager.Users.OrderByDescending(x => x.Experience).ToListAsync();
+        }
+
         public async Task Delete(Guid userId)
         {
             var existingUser = await GetUserById(userId);
@@ -58,13 +63,5 @@ namespace Roads.Repository.UserRepository
                 throw new Exception("User update failed");
         }
 
-
-
-
-
-        /*        public List<User> OrderByXp()
-                {
-                    return _userManager.OrderBy(x => x.Experience).ToList();   
-                }*/
     }
 }

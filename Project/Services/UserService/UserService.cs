@@ -149,11 +149,11 @@ namespace Roads.Services.UserService
 
 
 
-        /*        public List<User> OrderByXp()
-                {
-                    var leaderboardByXp = _userRepository.OrderByXp();
-                    return _mapper.Map<List<User>>(leaderboardByXp);
-                }*/
+        public async Task<List<UserDTO>> OrderByXp()
+        {
+            var leaderboardByXp = await _userRepository.OrderByXp();
+            return _mapper.Map<List<UserDTO>>(leaderboardByXp);
+        }
     }
 }
 

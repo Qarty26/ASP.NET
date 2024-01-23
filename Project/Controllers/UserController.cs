@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Roads.Models;
 using Roads.Models.DTOs;
@@ -9,6 +10,7 @@ namespace Roads.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class UserController : ControllerBase
     {
 
@@ -79,11 +81,11 @@ namespace Roads.Controllers
         }
 
 
-        /*        [HttpGet("GetByXpDescending")]
-                public IActionResult SortByXp()
-                {
-                    return Ok(_userService.OrderByXp());
-                }*/
+        [HttpGet("GetByXpDescending")]
+        public async Task<IActionResult> SortByXp()
+        {
+            return Ok( await _userService.OrderByXp());
+        }
 
         //todo
         /*        [HttpPost("Add car to user")]

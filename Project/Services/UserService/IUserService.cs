@@ -15,7 +15,6 @@ namespace Roads.Services.UserService
         Task<Guid> Login(LoginDTO loginDto);
         Task Logout();
         Task<ErrorResponse> ConfirmEmail(string email, string token);
-
- /*       List<User> OrderByXp();*/
+        Task<List<UserDTO>> OrderByXp();
     }
 }
