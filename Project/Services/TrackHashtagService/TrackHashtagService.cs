@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Roads.Models;
+using Roads.Models.DTOs;
 using Roads.Repository.HashtagRepository;
 using Roads.Repository.TrackHashtagRepository;
 using Roads.Repository.TrackRepository;
@@ -13,17 +14,18 @@ namespace Roads.Services.TrackHashtagService
         public IHashtagRepository _hashtagRepository;
         public ITrackHashtagRepository _trackHashtagRepository;
 
-        public TrackHashtagService(IMapper mapper, ITrackRepository trackRepository, IHashtagRepository hashtagRepository)
+        public TrackHashtagService(IMapper mapper, ITrackRepository trackRepository, IHashtagRepository hashtagRepository, ITrackHashtagRepository trackHashtagRepository)
         {
             _mapper = mapper;
             _trackRepository = trackRepository;
             _hashtagRepository = hashtagRepository;
+            _trackHashtagRepository = trackHashtagRepository;
         }
-        
+
         public async Task AddHashtagToTrack(Guid idTrack, Guid idHashtag)
         {
             var track = await _trackRepository.FindByIdAsync(idTrack);
-            if (track == null) 
+            if (track == null)
             {
                 throw new Exception("Invalid track");
             }
@@ -33,14 +35,14 @@ namespace Roads.Services.TrackHashtagService
                 throw new Exception("Invalid hashtag");
             }
 
-            var relation = new TrackHashtagRelation
+            await _trackHashtagRepository.CreateAsync(_mapper.Map<TrackHashtagRelation>(new TrackHashtagRelationDTO()
             {
-                IdHashtag = idHashtag,
-                IdTrack = idTrack
-            };
+                IdTrack = idTrack,
+                IdHashtag = idHashtag
+            }));
 
-            _trackHashtagRepository.CreateAsync(relation);
-            
+            await _trackHashtagRepository.SaveAsync();
+
         }
     }
 }

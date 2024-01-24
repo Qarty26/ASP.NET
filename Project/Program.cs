@@ -99,6 +99,9 @@ void SeedData(IHost app)
         var hashtagService = scope.ServiceProvider.GetService<HashtagSeeder>();
         hashtagService.SeedInitialHashtags();
 
+        var trackHashtagService = scope.ServiceProvider.GetService<TrackHashtagRelationSeeder>();
+        trackHashtagService.SeedInitialTrackHashtags();
+
 
     }
 }
