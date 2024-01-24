@@ -102,6 +102,9 @@ void SeedData(IHost app)
         var trackHashtagService = scope.ServiceProvider.GetService<TrackHashtagRelationSeeder>();
         trackHashtagService.SeedInitialTrackHashtags();
 
+        var userTrackCarService = scope.ServiceProvider.GetService<UserTrackCarSeeder>();
+        userTrackCarService.SeedInitialUTC();
+
 
     }
 }
