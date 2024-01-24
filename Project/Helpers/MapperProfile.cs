@@ -54,6 +54,9 @@ namespace Roads.Helpers
 
             CreateMap<Hashtag, HashtagCreateDTO>();
             CreateMap<HashtagCreateDTO, Hashtag>();
+
+            CreateMap<UserTrackCarRelation, UserTrackCarRelationDTO>();
+            CreateMap<UserTrackCarRelationDTO, UserTrackCarRelation>();
         }
     }
 }

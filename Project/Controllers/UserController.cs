@@ -5,6 +5,7 @@ using Roads.Models;
 using Roads.Models.DTOs;
 using Roads.Services.UserCarService;
 using Roads.Services.UserService;
+using Roads.Services.UserTrackCarService;
 
 namespace Roads.Controllers
 {
@@ -16,11 +17,13 @@ namespace Roads.Controllers
 
         private readonly IUserService _userService;
         private readonly IUserCarService _userCarService;
+        private readonly IUserTrackCarService _userTrackCarService;
 
-        public UserController(IUserService userService, IUserCarService userCarService)
+        public UserController(IUserService userService, IUserCarService userCarService, IUserTrackCarService userTrackCarService)
         {
             _userService = userService;
             _userCarService = userCarService;
+            _userTrackCarService = userTrackCarService;
         }
 
         [HttpPost("Sign Up")]
@@ -104,6 +107,13 @@ namespace Roads.Controllers
         public async Task<IActionResult> CreateCarToUser(CarDTO car, Guid idUser)
         {
             await _userCarService.CreateCarToUser(car, idUser);
+            return Ok();
+        }
+
+        [HttpPost("Add track with car to user")]
+        public async Task<IActionResult> AddTrackWithCarToUser(Guid idTrack, Guid idCar, Guid idUser)
+        {
+            await _userTrackCarService.AddTrackWithCarToUser(idTrack, idCar, idUser);
             return Ok();
         }
     }

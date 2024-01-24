@@ -14,7 +14,7 @@ namespace Roads.Models
 
         public User? User { get; set; }
         public Guid? IdUser { get; set; }
-        public ICollection<TrackCarRelation>? TrackCarRelations { get; set; }
+        public ICollection<UserTrackCarRelation>? UserTrackCarRelations { get; set; }
 
     }
 }

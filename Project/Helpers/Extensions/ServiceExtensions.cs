@@ -7,6 +7,7 @@ using Roads.Repository.MapRepository;
 using Roads.Repository.TrackHashtagRepository;
 using Roads.Repository.TrackRepository;
 using Roads.Repository.UserRepository;
+using Roads.Repository.UserTrackCarRelationRepository;
 using Roads.Services.CarService;
 using Roads.Services.HashtagService;
 using Roads.Services.MapService;
@@ -14,6 +15,7 @@ using Roads.Services.TrackHashtagService;
 using Roads.Services.TrackService;
 using Roads.Services.UserCarService;
 using Roads.Services.UserService;
+using Roads.Services.UserTrackCarService;
 
 namespace Roads.Helpers.Extensions
 {
@@ -28,6 +30,7 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<IHashtagRepository, HashtagRepository>();
             services.AddTransient<ITrackHashtagRepository, TrackHashtagRepository>();
             services.AddTransient<IMapRepository, MapRepository>();
+            services.AddTransient<IUserTrackCarRelationRepository, UserTrackCarRelationRepository>();
             services.AddScoped<UserManager<User>>();
             services.AddScoped<RoleManager<IdentityRole<Guid>>>();
 
@@ -42,6 +45,7 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<IUserCarService, UserCarService>();
             services.AddTransient<IMapService, MapService>();
             services.AddTransient<ITrackHashtagService, TrackHashtagService>();
+            services.AddTransient<IUserTrackCarService, UserTrackCarService>();
 
             return services;
         }
@@ -55,6 +59,7 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<MapSeeder>();
             services.AddTransient<UserRoleSeeder>();
             services.AddTransient<TrackHashtagRelationSeeder>();
+            services.AddTransient<UserTrackCarSeeder>();
 
             return services;
         }

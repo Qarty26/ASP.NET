@@ -15,7 +15,7 @@ namespace Roads.Models
         public int Rank { get; set; } = 0;
 
         public ICollection<Car>? Cars { get; set; } 
-        public ICollection<UserTrackRelation>? UserTrackRelations { get; set;}
+        public ICollection<UserTrackCarRelation>? UserTrackCarRelations { get; set;}
 
     }
 }

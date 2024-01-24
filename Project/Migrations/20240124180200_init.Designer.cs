@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roads.Data;
 
@@ -11,9 +12,11 @@ using Roads.Data;
 namespace Roads.Migrations
 {
     [DbContext(typeof(RoadsContext))]
-    partial class RoadsContextModelSnapshot : ModelSnapshot
+    [Migration("20240124180200_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -274,10 +277,10 @@ namespace Roads.Migrations
 
             modelBuilder.Entity("Roads.Models.TrackHashtagRelation", b =>
                 {
-                    b.Property<Guid?>("IdHashtag")
+                    b.Property<Guid>("IdHashtag")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("IdTrack")
+                    b.Property<Guid>("IdTrack")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdHashtag", "IdTrack");
@@ -508,7 +511,7 @@ namespace Roads.Migrations
                     b.HasOne("Roads.Models.User", "User")
                         .WithMany("UserTrackCarRelations")
                         .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Car");
 
