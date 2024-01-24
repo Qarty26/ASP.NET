@@ -7,6 +7,6 @@
         public int Xp { get; set; } = 0;
         public bool Confirmed { get; set; } = false;
         public MapDTO? Map { get; set; }
-        public List<TrackCarRelation> trackHashtagRelations { get; set; }
+        public List<TrackHashtagRelationDTO> trackHashtagRelations { get; set; }
     }
 }

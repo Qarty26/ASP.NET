@@ -7,8 +7,8 @@ using Roads.Services.TrackService;
 
 namespace Roads.Controllers
 {
-        [Route("api/[controller]")]
-        [ApiController]
+    [Route("api/[controller]")]
+    [ApiController]
     public class TrackController : ControllerBase
     {
         private readonly ITrackService _trackService;
@@ -98,29 +98,5 @@ namespace Roads.Controllers
         }
 
 
-        /*        [HttpPost("AddTag")]
-                public IActionResult AddTagToTrack(HashtagDTO hashtagDTO, Guid id)
-                {
-                    Track track = tracks.FirstOrDefault(t => t.Id == id);
-
-                    if (track != null)
-                    {
-                        if (track.Hashtags == null)
-                        {
-                            track.Hashtags = new List<Hashtag>();
-                        }
-
-                        Hashtag hashtag = new Hashtag
-                        {
-                            Tag = hashtagDTO.Tag,
-                            Track = track
-                        };
-
-                        track.Hashtags.Add(hashtag);
-                        return Ok($"Hashtag added to track {id}'s list!");
-                    }
-
-                    return NotFound($"Track with ID {id} not found.");
-                }*/
     }
 }

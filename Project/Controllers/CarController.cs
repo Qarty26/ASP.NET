@@ -16,8 +16,7 @@ namespace Roads.Controllers
         {
             _carService = carService;
         }
-
-        [HttpGet("BetweenYears")]
+        [HttpGet("Get cars between years")]
         public IActionResult GetCarsBetweenYears(int startYear, int endYear)
         {
             return Ok(_carService.YearsBetween(startYear, endYear));

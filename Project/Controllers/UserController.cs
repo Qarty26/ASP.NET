@@ -90,7 +90,7 @@ namespace Roads.Controllers
         [HttpGet("GetByXpDescending")]
         public async Task<IActionResult> SortByXp()
         {
-            return Ok( await _userService.OrderByXp());
+            return Ok(await _userService.OrderByXp());
         }
 
         [HttpPost("Add car to user")]
