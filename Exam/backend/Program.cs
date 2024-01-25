@@ -56,5 +56,14 @@ void SeedData(IHost app)
     {
         var testService = scope.ServiceProvider.GetService<TestSeeder>();
         testService.SeedInitialTests();
+
+        var eventService = scope.ServiceProvider.GetService<EventSeeder>();
+        eventService.SeedInitialEvents();
+
+        var pService = scope.ServiceProvider.GetService<ParticipantSeeder>();
+        pService.SeedInitialParticipants();
+
+        var epService = scope.ServiceProvider.GetService<EventParticipantSeeder>();
+        epService.SeedInitialEventParticipants();
     }
 }
