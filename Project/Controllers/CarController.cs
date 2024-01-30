@@ -16,39 +16,39 @@ namespace Roads.Controllers
         {
             _carService = carService;
         }
-        [HttpGet("Get cars between years")]
+        [HttpGet("get_interval")]
         public IActionResult GetCarsBetweenYears(int startYear, int endYear)
         {
             return Ok(_carService.YearsBetween(startYear, endYear));
         }
 
-        [HttpGet("GetCarById")]
+        [HttpGet("car/{id}")]
         public IActionResult GetCarById(Guid id)
         {
             return Ok(_carService.GetCarById(id));
         }
 
-        [HttpGet("Get All Cars")]
+        [HttpGet("get_all")]
         public async Task<IActionResult> GetAllCars()
         {
             return Ok(await _carService.GetAllCars());
         }
 
-        [HttpPost("Add Car")]
-        public async Task<IActionResult> CreateCarAsync(CarCreateDTO car)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateCarAsync([FromBody] CarCreateDTO car)
         {
             await _carService.CreateCar(car);
             return Ok();
         }
 
-        [HttpPost("Update Car")]
-        public IActionResult UpdateCar(CarDTO car)
+        [HttpPost("update")]
+        public IActionResult UpdateCar([FromBody] CarDTO car)
         {
             _carService.UpdateCar(car);
             return Ok();
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _carService.DeleteCarById(id);

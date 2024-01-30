@@ -26,63 +26,63 @@ namespace Roads.Controllers
             _userTrackCarService = userTrackCarService;
         }
 
-        [HttpPost("Sign Up")]
-        public async Task<IActionResult> SignUp(UserSignUpDTO user)
+        [HttpPost("signup")]
+        public async Task<IActionResult> SignUp([FromBody] UserSignUpDTO user)
         {
             return Ok(await _userService.SignUp(user));
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDTO user)
+        public async Task<IActionResult> Login([FromBody] LoginDTO user)
         {
             return Ok(await _userService.Login(user));
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             await _userService.Logout();
             return Ok();
         }
 
-        [HttpGet("Comfirm Email")]
+        [HttpGet("confirm_email")]
         public async Task<IActionResult> ConfirmEmail(string email, string token)
         {
             return Ok(await _userService.ConfirmEmail(email, token));
         }
 
 
-        [HttpGet("Get user by id")]
+        [HttpGet("user/{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await _userService.GetUserById(id));
         }
 
-        [HttpGet("Get all users")]
+        [HttpGet("get_all")]
         public async Task<IActionResult> GetAllUsers()
         {
             return Ok(await _userService.GetAllUsersAsync());
         }
 
-        [HttpGet("Get all users with cars and tracks")]
+        [HttpGet("get_full")]
         public async Task<IActionResult> GetAllUsersWithCarsAndTracks()
         {
             return Ok(await _userService.GetAllUsersWithCarsAsync());
         }
 
-        [HttpPost("Create user")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateUserAsync(UserCreateDTO user)
         {
             return Ok(await _userService.CreateAsync(user));
         }
 
-        [HttpPost("Update user")]
-        public async Task<IActionResult> UpdateUserAsync(UserUpdateDTO user)
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateUserAsync([FromBody] UserUpdateDTO user)
         {
             return Ok(await _userService.Update(user));
         }
 
-        [HttpDelete("Delete user")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteUserAsync(Guid id)
         {
             await _userService.Delete(id);
@@ -90,27 +90,27 @@ namespace Roads.Controllers
         }
 
 
-        [HttpGet("GetByXpDescending")]
+        [HttpGet("get_by_xp")]
         public async Task<IActionResult> SortByXp()
         {
             return Ok(await _userService.OrderByXp());
         }
 
-        [HttpPost("Add car to user")]
+        [HttpPost("add_car")]
         public async Task<IActionResult> AddCarToUser(Guid idCar, Guid idUser)
         {
             await _userCarService.AddCarToUser(idCar, idUser);
             return Ok();
         }
 
-        [HttpPost("Create car for user")]
+        [HttpPost("create_car")]
         public async Task<IActionResult> CreateCarToUser(CarDTO car, Guid idUser)
         {
             await _userCarService.CreateCarToUser(car, idUser);
             return Ok();
         }
 
-        [HttpPost("Add track with car to user")]
+        [HttpPost("add_track_car")]
         public async Task<IActionResult> AddTrackWithCarToUser(Guid idTrack, Guid idCar, Guid idUser)
         {
             await _userTrackCarService.AddTrackWithCarToUser(idTrack, idCar, idUser);

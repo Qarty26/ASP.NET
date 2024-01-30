@@ -48,21 +48,18 @@ namespace Roads.Data
                 .HasOne(tr => tr.Track)
                 .WithMany(t => t.UserTrackCarRelations)
                 .HasForeignKey(tr => tr.IdTrack)
-                .IsRequired(false)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<UserTrackCarRelation>()
                 .HasOne(tr => tr.User)
                 .WithMany(u => u.UserTrackCarRelations)
                 .HasForeignKey(tr => tr.IdUser)
-                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserTrackCarRelation>()
                 .HasOne(tr => tr.Car)
                 .WithMany(u => u.UserTrackCarRelations)
                 .HasForeignKey(tr => tr.IdCar)
-                .IsRequired(false)
                 .OnDelete(DeleteBehavior.NoAction);
 
 

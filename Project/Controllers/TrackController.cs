@@ -20,77 +20,77 @@ namespace Roads.Controllers
             _trackHashtagService = trackHashtagService;
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("track/{id}")]
         public IActionResult GetTrackById(Guid id)
         {
             return Ok(_trackService.GetTrackById(id));
         }
 
-        [HttpGet("All tracks")]
+        [HttpGet("get_all")]
         public async Task<IActionResult> GetAllTracks()
         {
             return Ok(await _trackService.GetAll());
         }
 
-        [HttpGet("All tracks with map")]
+        [HttpGet("get_map")]
         public IActionResult GetAllTracksWithMaps()
         {
             return Ok(_trackService.GetAllWithMap());
         }
 
-        [HttpGet("All tracks with tags")]
+        [HttpGet("get_tag")]
         public IActionResult GetAllTracksWithTags()
         {
             return Ok(_trackService.GetAllWithTags());
         }
 
-        [HttpGet("All Confirmed")]
+        [HttpGet("get_confirmed")]
         public IActionResult AllConfirmed()
         {
             return Ok(_trackService.GetAllConfirmed());
         }
 
-        [HttpGet("All pending")]
+        [HttpGet("get_pending")]
         public IActionResult AllPending()
         {
             return Ok(_trackService.GetAllPending())
 ;
         }
 
-        [HttpGet("OrderByXp")]
+        [HttpGet("get_by_xp")]
         public IActionResult OrderByHighestXp()
         {
             return Ok(_trackService.OrderByHighestXp());
         }
 
-        [HttpGet("Order by newest")]
+        [HttpGet("get_by_newest")]
         public IActionResult OrderByNewest()
         {
             return Ok(_trackService.OrderByNewest());
         }
 
-        [HttpPost("Add Track")]
-        public async Task<IActionResult> AddTrackAsync(TrackCreateDTO track)
+        [HttpPost("create")]
+        public async Task<IActionResult> AddTrackAsync([FromBody] TrackCreateDTO track)
         {
             await _trackService.CreateTrack(track);
             return Ok();
         }
 
-        [HttpPost("Add Tags to Track")]
+        [HttpPost("add_tag")]
         public async Task<IActionResult> AddTagToTrack(Guid idTrack, Guid idTag)
         {
             await _trackHashtagService.AddHashtagToTrack(idTrack, idTag);
             return Ok();
         }
 
-        [HttpPost("Update Track")]
-        public IActionResult AddTrackAsync(TrackDTO track)
+        [HttpPost("update")]
+        public IActionResult AddTrackAsync([FromBody] TrackDTO track)
         {
             _trackService.Update(track);
             return Ok();
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _trackService.DeleteTrackById(id);

@@ -16,33 +16,33 @@ namespace Roads.Controllers
             _hashtagService = hashtagService;
         }
 
-        [HttpGet("GetAllTags")]
+        [HttpGet("get_all")]
         public IActionResult GetAllTags()
         {
             return Ok(_hashtagService.GetAllHashtags());
         }
 
-        [HttpGet("GetTagById")]
+        [HttpGet("tag/{id}")]
         public IActionResult GetTagById(Guid id)
         {
             return Ok(_hashtagService.GetHashtagById(id));
         }
 
-        [HttpPost("AddHashtag")]
-        public async Task<IActionResult> AddTag(HashtagCreateDTO tag)
+        [HttpPost("create")]
+        public async Task<IActionResult> AddTag([FromBody] HashtagCreateDTO tag)
         {
             await _hashtagService.CreateHashtag(tag);
             return Ok(tag);
         }
 
-        [HttpPost("Update Hashtag")]
-        public IActionResult UpdateTag(HashtagDTO tag)
+        [HttpPost("update")]
+        public IActionResult UpdateTag([FromBody] HashtagDTO tag)
         {
             _hashtagService.UpdateHashtag(tag);
             return Ok(tag);
         }
 
-        [HttpDelete("DeleteById")]
+        [HttpDelete("delete/{id}")]
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _hashtagService.DeleteHashtagById(id);

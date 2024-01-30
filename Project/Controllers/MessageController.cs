@@ -8,7 +8,7 @@ namespace Roads.Controllers
     [Route("[controller]")]
     public class MessageController : ControllerBase
     {
-        [HttpPost]
+        [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] MessageRequestDTO request)
         {
             var message = new Message()
