@@ -12,7 +12,30 @@ namespace Roads.Helpers
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
 
-            CreateMap<User, UserWithCarAndTrackDTO>();
+            CreateMap<User, UserWithCarAndTrackDTO>()
+                .ForMember(t => t.Tracks, opt => opt.MapFrom( src => src.UserTrackCarRelations
+                .Select(ob => new TrackWithCarDTO()
+                {
+                    Track = new TrackDTO()
+                    {
+                        Id = ob.Track.Id,
+                        Name = ob.Track.Name,
+                        Xp = ob.Track.Xp,
+                        Confirmed = ob.Track.Confirmed,
+                        Map = null
+                    },
+                    Car = new CarDTO()
+                    {
+                        Id = ob.Car.Id,
+                        Make = ob.Car.Make,
+                        Model = ob.Car.Model,
+                        Year = ob.Car.Year,
+                        Color = ob.Car.Color
+
+                    }
+                })
+                
+                ));
             CreateMap<UserWithCarAndTrackDTO, User>();
 
             CreateMap<User, UserCreateDTO>();

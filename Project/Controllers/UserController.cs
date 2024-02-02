@@ -32,7 +32,7 @@ namespace Roads.Controllers
             return Ok(await _userService.SignUp(user));
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO user)
         {
             return Ok(await _userService.Login(user));

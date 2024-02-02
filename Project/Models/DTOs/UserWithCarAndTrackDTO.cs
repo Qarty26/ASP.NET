@@ -10,7 +10,7 @@
         public int Rank { get; set; } = 0;
 
         public List<CarDTO> Cars { get; set; }
-        public List<TrackDTO> Tracks { get; set; }
+        public List<TrackWithCarDTO> Tracks { get; set; }
 
     }
 }
