@@ -6,10 +6,10 @@ import {Track} from "@/models/Track";
 
 
 const trackWorker = new Track();
-const tracks = ref<ITrack[]>([]);
+const trackList = ref<ITrack[]>([]);
 const areTracksLoaded = ref(false);
 const fetchTracks = async() => {
-  tracks.value = await trackWorker.all_map();
+  trackList.value = await trackWorker.all_map();
   areTracksLoaded.value = true;
 }
 fetchTracks();
@@ -17,7 +17,6 @@ fetchTracks();
 </script>
 
 <template>
-  <main>
-
-  </main>
+  <TrackList v-if="areTracksLoaded"
+             :tracks = "trackList"/>
 </template>
