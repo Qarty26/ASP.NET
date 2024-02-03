@@ -1,5 +1,6 @@
 import { Generic } from './Generic'
 import axios from '@/helpers/AxiosInstance'
+import type {IMap} from "@/models/Map";
 
 export class Track extends Generic {
     protected routeName: string = 'Track'
@@ -21,6 +22,18 @@ export class Track extends Generic {
                 throw error.response.data.title;
             }))
     }
+
+    public all_map = async (params: string = '') => {
+        return await axios.get(`${this.routeName}/get_map${params}`)
+            .then((response) => response.data)
+            .catch((error) => {
+                if (error.response.status == 404) {
+                    console.log(error.response.data.message);
+                }
+                console.error(error.response);
+                return [];
+            });
+    }
 }
 
 export interface ITrack {
@@ -28,4 +41,7 @@ export interface ITrack {
     name: string,
     xp: number,
     confirmed: boolean
+    relations: {
+        map: IMap
+    }
 }
