@@ -4,7 +4,6 @@ import Track from "@/components/Track.vue";
 
 
 const props = defineProps<{
-  trackId: string,
   tracks: ITrack[]
 }>();
 

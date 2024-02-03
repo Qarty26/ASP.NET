@@ -10,17 +10,25 @@ const props = defineProps<{
 
 onMounted(() => {
 
-  const map = L.map("trackMap").setView(
-      [props.tracks.relations.map.startLatitude, props.tracks.relations.map.startLongitude],
-      13
-  );
+  try{
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    const map = L.map("trackMap").setView(
+        [props.tracks.relations.map.startLatitude, props.tracks.relations.map.startLongitude],
+        13
+    );
 
-  L.marker([
-    props.tracks.relations.map.startLatitude,
-    props.tracks.relations.map.startLongitude,
-  ]).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+    L.marker([
+      props.tracks.relations.map.startLatitude,
+      props.tracks.relations.map.startLongitude,
+    ]).addTo(map);
+
+  } catch (error)
+  {
+      console.error('Error initializing Leaflet map:', error);
+  }
+
 });
 
 
