@@ -17,5 +17,6 @@ namespace Roads.Services.UserService
         Task<ErrorResponse> ConfirmEmail(string email, string token);
         Task<List<UserDTO>> OrderByXp();
         Task<List<UserWithCarAndTrackDTO>> GetAllUsersWithCarsAndTracksAsync();
+        Task StoreDeviceToken(string IdUser, string deviceToken);
     }
 }

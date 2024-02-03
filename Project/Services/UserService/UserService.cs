@@ -155,6 +155,19 @@ namespace Roads.Services.UserService
             };
         }
 
+        public async Task StoreDeviceToken(string IdUser, string deviceToken)
+        {
+            var user = await _userRepository.GetUserById(new Guid(IdUser));
+            
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            user.DeviceToken = deviceToken;
+            await _userRepository.Update(user);
+        }
+
 
 
         public async Task<List<UserDTO>> OrderByXp()

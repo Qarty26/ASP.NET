@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Roads.Models;
 using Roads.Models.DTOs;
+using Roads.Models.Errors;
 using Roads.Services.UserCarService;
 using Roads.Services.UserService;
 using Roads.Services.UserTrackCarService;
@@ -18,12 +20,14 @@ namespace Roads.Controllers
         private readonly IUserService _userService;
         private readonly IUserCarService _userCarService;
         private readonly IUserTrackCarService _userTrackCarService;
+        private readonly UserManager<User> _userManager;
 
-        public UserController(IUserService userService, IUserCarService userCarService, IUserTrackCarService userTrackCarService)
+        public UserController(IUserService userService, IUserCarService userCarService, IUserTrackCarService userTrackCarService, UserManager<User> userManager)
         {
             _userService = userService;
             _userCarService = userCarService;
             _userTrackCarService = userTrackCarService;
+            _userManager = userManager;
         }
 
         [HttpPost("signup")]
@@ -49,6 +53,30 @@ namespace Roads.Controllers
         public async Task<IActionResult> ConfirmEmail(string email, string token)
         {
             return Ok(await _userService.ConfirmEmail(email, token));
+        }
+
+        [HttpPatch("device-token/{deviceToken}")]
+        public async Task<IActionResult> StoreDeviceToken(string deviceToken)
+        {
+            string userId = _userManager.GetUserId(User);
+
+            try
+            {
+                await _userService.StoreDeviceToken(userId, deviceToken);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(new ErrorResponse()
+                {
+                    StatusCode = 500,
+                    Message = exception.Message
+                });
+            }
+            return Ok(new ErrorResponse()
+            {
+                StatusCode = 200,
+                Message = "Device token stored"
+            });
         }
 
 
