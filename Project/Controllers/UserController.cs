@@ -67,7 +67,7 @@ namespace Roads.Controllers
         [HttpGet("get_full")]
         public async Task<IActionResult> GetAllUsersWithCarsAndTracks()
         {
-            return Ok(await _userService.GetAllUsersWithCarsAsync());
+            return Ok(await _userService.GetAllUsersWithCarsAndTracksAsync());
         }
 
         [HttpPost("create")]

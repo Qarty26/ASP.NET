@@ -16,6 +16,6 @@ namespace Roads.Services.UserService
         Task Logout();
         Task<ErrorResponse> ConfirmEmail(string email, string token);
         Task<List<UserDTO>> OrderByXp();
-        Task<List<UserWithCarAndTrackDTO>> GetAllUsersWithCarsAsync();
+        Task<List<UserWithCarAndTrackDTO>> GetAllUsersWithCarsAndTracksAsync();
     }
 }

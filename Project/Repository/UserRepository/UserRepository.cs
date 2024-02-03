@@ -38,9 +38,8 @@ namespace Roads.Repository.UserRepository
             return await _userManager.Users.ToListAsync();
         }
 
-        public async Task<List<User>> GetUsersWIthCarsAsync()
+        public async Task<List<User>> GetUsersWIthCarsAndTracksAsync()
         {
-/*            return await _userManager.Users.Include(c => c.Cars).AsNoTracking().ToListAsync();*/
             var obj = await _userManager.Users
                 .Include(c => c.Cars)
                 .Include(t => t.UserTrackCarRelations)
