@@ -1,5 +1,5 @@
 import { Generic } from './Generic'
-import axios from "axios";
+import axios from '@/helpers/AxiosInstance'
 
 export class User extends Generic {
     protected routeName: string = "User"

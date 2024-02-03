@@ -1,4 +1,4 @@
-import axios from '../helpers/AxiosInstance'
+import axios from '@/helpers/AxiosInstance'
 export abstract class Generic {
     protected routeName: string = '';
 

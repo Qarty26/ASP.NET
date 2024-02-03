@@ -1,16 +1,11 @@
-import axios from './helpers/AxiosInstance'
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+
 <template>
-  <div id="app">
-    <google-map></google-map>
-  </div>
+
 </template>
 
-<script>
-import GoogleMap from './components/GoogleMap.vue'; // Adjust the path based on your project structure
+<style scoped>
 
-export default {
-  components: {
-    GoogleMap,
-  },
-};
-</script>
+</style>
