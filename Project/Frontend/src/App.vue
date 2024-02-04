@@ -48,14 +48,21 @@ getToken(messaging, {
 
 <template>
 
-
   <div class="flex flex-row items-center justify-between p-2 px-10">
     <RouterLink to="/home">
       Home
     </RouterLink>
 
-    <RouterLink to="/NotFound">
-      NotHere
+    <RouterLink to="/register">
+      Register
+    </RouterLink>
+
+    <RouterLink to="/login">
+      Login
+    </RouterLink>
+
+    <RouterLink to="/404">
+      404
     </RouterLink>
 
   </div>

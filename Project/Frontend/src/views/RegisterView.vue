@@ -10,12 +10,6 @@ const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 
-
-const handleIconClick = (node:any) => {
-  node.props.suffixIcon = node.props.suffixIcon === 'eye' ? 'eyeClosed' : 'eye'
-  node.props.type = node.props.type === 'password' ? 'text' : 'password'
-}
-
 const registerHandler = async (credentials:any) => {
   let payload = {
     username: credentials.username,
