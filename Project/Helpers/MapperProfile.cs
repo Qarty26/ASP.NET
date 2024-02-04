@@ -58,7 +58,14 @@ namespace Roads.Helpers
             CreateMap<TrackDTO, Track>();
 
             CreateMap<Track, TrackCreateDTO>();
-            CreateMap<TrackCreateDTO, Track>();
+            CreateMap<TrackCreateDTO, Track>()
+                .ForMember(t => t.Map, opt => opt.MapFrom(src => new MapDTO
+                {
+                    StartLatitude = src.Map.StartLatitude,
+                    StartLongitude = src.Map.StartLongitude,
+                    EndLatitude = src.Map.EndLatitude,
+                    EndLongitude = src.Map.EndLongitude
+                }));
 
             CreateMap<Track, TrackWithTagsDTO>();
             CreateMap<TrackWithTagsDTO, Track>();
@@ -80,6 +87,9 @@ namespace Roads.Helpers
 
             CreateMap<UserTrackCarRelation, UserTrackCarRelationDTO>();
             CreateMap<UserTrackCarRelationDTO, UserTrackCarRelation>();
+
+            CreateMap<Map, MapDTO>();
+            CreateMap<MapDTO, Map>();
         }
     }
 }
