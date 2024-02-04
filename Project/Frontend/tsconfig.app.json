@@ -4,7 +4,7 @@
     "src/**/*.ts",
     "formkit.config.ts",
     "formkit.theme.ts",
-    "src/helpers/AxiosIntance.ts",
+    "src/helpers/AxiosInstance.ts",
     "src/helpers/Authenticated.ts",
     "src/helpers/*.ts",
     "src/models/*.ts",

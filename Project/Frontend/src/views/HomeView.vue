@@ -10,6 +10,7 @@ const trackList = ref<ITrack[]>([]);
 const areTracksLoaded = ref(false);
 const fetchTracks = async() => {
   trackList.value = await trackWorker.all_map();
+  console.log(trackList.value);
   areTracksLoaded.value = true;
 }
 fetchTracks();

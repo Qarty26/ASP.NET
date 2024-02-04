@@ -8,9 +8,6 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast();
 
-// ============ FIREBASE ============
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDLTJBG2SJyI0zbU3qob92loVWMfpkgRLs",
   authDomain: "roads-26.firebaseapp.com",
@@ -21,16 +18,12 @@ const firebaseConfig = {
   measurementId: "G-GPSMH3S6MV"
 };
 
-
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const messaging = getMessaging()
 
 onMessage(messaging, (payload) => {
   toast.info(payload.notification?.body);
 })
-
 
 getToken(messaging, {
   vapidKey:
@@ -55,14 +48,18 @@ getToken(messaging, {
 
 <template>
 
+
   <div class="flex flex-row items-center justify-between p-2 px-10">
     <RouterLink to="/home">
       Home
     </RouterLink>
+
+    <RouterLink to="/NotFound">
+      NotHere
+    </RouterLink>
+
   </div>
 
+  <RouterView />
+
 </template>
-
-<style scoped>
-
-</style>
