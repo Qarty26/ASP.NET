@@ -6,6 +6,12 @@ const props = defineProps<{
   tags: IHashtag
 }>();
 
+const emits = defineEmits<{
+  (e: 'tag-delete', payload: {
+    tagId: string
+  }): void
+}>();
+
 
 </script>
 

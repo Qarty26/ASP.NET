@@ -7,14 +7,25 @@ const props = defineProps<{
   tracks: ITrack[]
 }>();
 
+const emits = defineEmits<{
+  (e: 'track-delete', payload: {
+    trackId: string
+  }): void
+}>();
+
+const handleTrackDeleteEmit = (payload: any) => {
+  emits('track-delete', payload);
+}
+
 
 </script>
 
 <template>
-  <div class="overflow-x-scroll">
+  <div class="overflow-y-scroll">
     <Track v-for = "(track, index) in props.tracks"
-    :key = "index"
-    :tracks = "track"
+           :key = "index"
+           :tracks = "track"
+           @track-delete = "handleTrackDeleteEmit"
     />
     </div>
 

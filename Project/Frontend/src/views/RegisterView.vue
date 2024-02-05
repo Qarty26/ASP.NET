@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import axios from '../helpers/AxiosInstance'
-import { store } from '../helpers/Authenticated'
+import { store } from '@/helpers/Authenticated'
 import { useRoute, useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 

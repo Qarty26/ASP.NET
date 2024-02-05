@@ -6,6 +6,7 @@ import router from './router'
 import Toast, { type PluginOptions, POSITION } from 'vue-toastification'
 import { defaultConfig, plugin } from '@formkit/vue'
 import config from '../formkit.config'
+import 'tailwindcss/tailwind.css';
 
 
 const app = createApp(App)

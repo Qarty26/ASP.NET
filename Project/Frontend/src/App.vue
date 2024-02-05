@@ -69,4 +69,6 @@ getToken(messaging, {
 
   <RouterView />
 
+
 </template>
+

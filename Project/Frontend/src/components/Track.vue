@@ -8,6 +8,12 @@ const props = defineProps<{
   tracks: ITrack
 }>();
 
+const emits = defineEmits<{
+  (e: 'track-delete', payload: {
+    trackId: string
+  }): void
+}>();
+
 onMounted(() => {
 
   try{
@@ -35,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-gray-200 p-4 rounded shadow-md">
+  <div class="bg-black p-4 rounded shadow-md">
     <div class="mb-4">
 
       <div id="trackMap" class="h-48 w-full mb-2"></div>

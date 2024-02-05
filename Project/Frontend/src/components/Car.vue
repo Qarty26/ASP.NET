@@ -6,6 +6,12 @@ const props = defineProps<{
   cars: ICar
 }>();
 
+const emits = defineEmits<{
+  (e: 'car-delete', payload: {
+    carId: string
+  }): void
+}>();
+
 
 </script>
 

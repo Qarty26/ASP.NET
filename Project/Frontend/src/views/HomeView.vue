@@ -64,3 +64,4 @@ fetchTags();
   <div v-else>Error in fetching tags</div>
 
 </template>
+
