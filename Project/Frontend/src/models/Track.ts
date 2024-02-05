@@ -41,7 +41,5 @@ export interface ITrack {
     name: string,
     xp: number,
     confirmed: boolean
-    relations: {
-        map: IMap
-    }
+    map: IMap
 }

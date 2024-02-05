@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import NotFound from '@/views/404PageView.vue'
 import RegisterView from "@/views/RegisterView.vue";
 import LoginView from "@/views/LoginView.vue";
+import CarsView from "@/views/CarsView.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +13,12 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
+      meta: { requiresAuth: false }
+    },
+    {
+      path: '/cars',
+      name: 'cars',
+      component: CarsView,
       meta: { requiresAuth: false }
     },
     {

@@ -21,6 +21,18 @@ export class Car extends Generic {
                 throw error.response.data.title;
             }))
     }
+
+    public all_between = async (start: number, end: number) => {
+        return await axios.get(`${this.routeName}/get_interval?startYear=${start}&endYear=${end}`)
+            .then((response) => response.data)
+            .catch((error) => {
+                if (error.response.status == 404) {
+                    console.log(error.response.data.message);
+                }
+                console.error(error.response);
+                return [];
+            });
+    }
 }
 
 export interface ICar {

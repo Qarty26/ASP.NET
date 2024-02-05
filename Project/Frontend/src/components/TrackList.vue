@@ -21,12 +21,12 @@ const handleTrackDeleteEmit = (payload: any) => {
 </script>
 
 <template>
-  <div class="overflow-y-scroll">
+<!--  <div class="overflow-x-scroll">-->
     <Track v-for = "(track, index) in props.tracks"
            :key = "index"
            :tracks = "track"
            @track-delete = "handleTrackDeleteEmit"
     />
-    </div>
+<!--    </div>-->
 
 </template>

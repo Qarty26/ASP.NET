@@ -48,7 +48,7 @@ getToken(messaging, {
 
 <template>
 
-  <div class="flex flex-row items-center justify-between p-2 px-10">
+<!--  <div class="flex flex-row items-center justify-between p-2 px-10">
     <RouterLink to="/home">
       Home
     </RouterLink>
@@ -65,8 +65,7 @@ getToken(messaging, {
       404
     </RouterLink>
 
-  </div>
-
+  </div>-->
   <RouterView />
 
 
