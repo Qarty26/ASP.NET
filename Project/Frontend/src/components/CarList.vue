@@ -20,7 +20,7 @@ const handleCarDeleteEmit = (payload: any) => {
 
 <template>
 
-  <div class="overflow-x-auto">
+  <div class="contents">
     <Car v-for = "(car, index) in props.cars"
          :key = "index"
          :cars = "car"

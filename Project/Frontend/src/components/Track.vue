@@ -46,23 +46,20 @@ onMounted(() => {
 </script>
 
 <template>
-<!--  <div class="bg-black p-4 rounded shadow-md">
+ <div class="bg-black p-4 rounded shadow-md">
     <div class="mb-4">
 
-
-
-
       <div class="flex justify-between">
-        <div>-->
-<!--          <div id="trackMap"></div>-->
+        <div>
+         <div id="trackMap"></div>
           <h2 class="text-xl font-bold mb-2">{{ tracks.name }}</h2>
           <ul>
             <li class="mb-1"><strong class="text-gray-800">ID:</strong> {{ tracks.id }}</li>
             <li class="mb-1"><strong class="text-gray-800">XP:</strong> {{ tracks.xp }}</li>
             <li><strong class="text-gray-800">Confirmed:</strong> {{ tracks.confirmed ? 'Yes' : 'No' }}</li>
           </ul>
-<!--        </div>
+        </div>
       </div>
     </div>
-  </div>-->
+  </div>
 </template>

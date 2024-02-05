@@ -20,7 +20,7 @@ const handleTagDeleteEmit = (payload: any) => {
 
 <template>
 
-  <div class="overflow-y-scroll">
+  <div class="contents">
     <Hashtag v-for = "(tag, index) in props.tags"
          :key = "index"
          :tags = "tag"

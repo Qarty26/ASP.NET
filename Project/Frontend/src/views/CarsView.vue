@@ -46,7 +46,7 @@ const intervalHandler = async (data, node) => {
   <CarList v-if="areCarsLoaded"
            :cars = "carList"/>
   <div v-else>Error in fetching cars</div>
-  
+
   <FormKit type="form" @submit="intervalHandler" submit-label="Cars Between">
     <FormKit
         type="text"
