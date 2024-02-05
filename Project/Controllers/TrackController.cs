@@ -4,6 +4,7 @@ using Roads.Models.DTOs;
 using Roads.Repository.TrackHashtagRepository;
 using Roads.Services.TrackHashtagService;
 using Roads.Services.TrackService;
+using Roads.Services.UnitOfWorkService;
 
 namespace Roads.Controllers
 {
@@ -13,11 +14,13 @@ namespace Roads.Controllers
     {
         private readonly ITrackService _trackService;
         private readonly ITrackHashtagService _trackHashtagService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
 
-        public TrackController(ITrackService trackService, ITrackHashtagService trackHashtagService)
+        public TrackController(ITrackService trackService, ITrackHashtagService trackHashtagService, IUnitOfWorkService unitOfWorkService)
         {
             _trackService = trackService;
             _trackHashtagService = trackHashtagService;
+            _unitOfWorkService = unitOfWorkService;
         }
 
         [HttpGet("track/{id}")]
@@ -73,6 +76,7 @@ namespace Roads.Controllers
         public async Task<IActionResult> AddTrackAsync([FromBody] TrackCreateDTO track)
         {
             await _trackService.CreateTrack(track);
+            await _unitOfWorkService.SaveAllAsync();
             return Ok();
         }
 
@@ -80,6 +84,7 @@ namespace Roads.Controllers
         public async Task<IActionResult> AddTagToTrack(Guid idTrack, Guid idTag)
         {
             await _trackHashtagService.AddHashtagToTrack(idTrack, idTag);
+            await _unitOfWorkService.SaveAllAsync();
             return Ok();
         }
 
@@ -87,6 +92,7 @@ namespace Roads.Controllers
         public IActionResult AddTrackAsync([FromBody] TrackDTO track)
         {
             _trackService.Update(track);
+            _unitOfWorkService.SaveAll();
             return Ok();
         }
 
@@ -94,6 +100,7 @@ namespace Roads.Controllers
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _trackService.DeleteTrackById(id);
+            _unitOfWorkService.SaveAll();
             return Ok(deleted);
         }
 

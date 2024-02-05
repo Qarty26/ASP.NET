@@ -13,6 +13,7 @@ using Roads.Services.HashtagService;
 using Roads.Services.MapService;
 using Roads.Services.TrackHashtagService;
 using Roads.Services.TrackService;
+using Roads.Services.UnitOfWorkService;
 using Roads.Services.UserCarService;
 using Roads.Services.UserService;
 using Roads.Services.UserTrackCarService;
@@ -46,6 +47,7 @@ namespace Roads.Helpers.Extensions
             services.AddTransient<IMapService, MapService>();
             services.AddTransient<ITrackHashtagService, TrackHashtagService>();
             services.AddTransient<IUserTrackCarService, UserTrackCarService>();
+            services.AddTransient<IUnitOfWorkService, UnitOfWorkService>();
 
             return services;
         }

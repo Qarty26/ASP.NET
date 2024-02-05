@@ -2,6 +2,7 @@
 using Roads.Models;
 using Roads.Models.DTOs;
 using Roads.Services.HashtagService;
+using Roads.Services.UnitOfWorkService;
 
 namespace Roads.Controllers
 {
@@ -10,10 +11,12 @@ namespace Roads.Controllers
     public class HashtagController : ControllerBase
     {
         private readonly IHashtagService _hashtagService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
 
-        public HashtagController(IHashtagService hashtagService)
+        public HashtagController(IHashtagService hashtagService, IUnitOfWorkService unitOfWorkService)
         {
             _hashtagService = hashtagService;
+            _unitOfWorkService = unitOfWorkService;
         }
 
         [HttpGet("get_all")]
@@ -32,6 +35,7 @@ namespace Roads.Controllers
         public async Task<IActionResult> AddTag([FromBody] HashtagCreateDTO tag)
         {
             await _hashtagService.CreateHashtag(tag);
+            await _unitOfWorkService.SaveAllAsync();
             return Ok(tag);
         }
 
@@ -39,6 +43,7 @@ namespace Roads.Controllers
         public IActionResult UpdateTag([FromBody] HashtagDTO tag)
         {
             _hashtagService.UpdateHashtag(tag);
+            _unitOfWorkService.SaveAll();
             return Ok(tag);
         }
 
@@ -46,6 +51,7 @@ namespace Roads.Controllers
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _hashtagService.DeleteHashtagById(id);
+            _unitOfWorkService.SaveAll();
             return Ok(deleted);
         }
 

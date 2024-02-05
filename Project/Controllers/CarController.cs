@@ -2,6 +2,7 @@
 using Roads.Models;
 using Roads.Models.DTOs;
 using Roads.Services.CarService;
+using Roads.Services.UnitOfWorkService;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Roads.Controllers
@@ -11,10 +12,12 @@ namespace Roads.Controllers
     
     public class CarController : ControllerBase
     {
-        private readonly ICarService _carService; 
-        public CarController(ICarService carService)
+        private readonly ICarService _carService;
+        private readonly IUnitOfWorkService _unitOfWorkService;
+        public CarController(ICarService carService, IUnitOfWorkService unitOfWorkService)
         {
             _carService = carService;
+            _unitOfWorkService = unitOfWorkService;
         }
         [HttpGet("get_interval")]
         public IActionResult GetCarsBetweenYears(int startYear, int endYear)
@@ -38,6 +41,8 @@ namespace Roads.Controllers
         public async Task<IActionResult> CreateCarAsync([FromBody] CarCreateDTO car)
         {
             await _carService.CreateCar(car);
+            await _unitOfWorkService.SaveAllAsync();
+
             return Ok();
         }
 
@@ -45,6 +50,7 @@ namespace Roads.Controllers
         public IActionResult UpdateCar([FromBody] CarDTO car)
         {
             _carService.UpdateCar(car);
+            _unitOfWorkService.SaveAll();
             return Ok();
         }
 
@@ -52,6 +58,7 @@ namespace Roads.Controllers
         public IActionResult DeleteById(Guid id)
         {
             var deleted = _carService.DeleteCarById(id);
+            _unitOfWorkService.SaveAll();
             return Ok(deleted);
         }
 

@@ -30,7 +30,6 @@ namespace Roads.Repository.GenericRepository
         public void Create(TEntity entity)
         {
             _table.Add(entity);
-            //_roadsContext.SaveChanges();
         }
         public async Task CreateAsync(TEntity entity)
         {
